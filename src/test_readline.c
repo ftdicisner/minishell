@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_readline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/03 11:07:36 by dicisner         ###   ########.fr       */
+/*   Created: 2022/01/06 19:43:27 by dicisner          #+#    #+#             */
+/*   Updated: 2022/02/10 16:01:10 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_shell	*init()
+int	keyPressed(int count, int key)
 {
-	t_shell *shell;
-
-	shell = malloc(sizeof(shell));
-	return (shell);
+	// printf("Key pressed: %d\n", key);
+	// rl_on_new_line();
+	rl_replace_line("hello", 0);
+	return (0);
 }
 
-int	main(int argc, char **argv, char** env)
+int	keyPressed2(int count, int key)
+{
+	printf("Key pressed: %d\n", key);
+	// rl_on_new_line();
+	// rl_replace_line("hello", 0);
+	rl_redisplay();
+	return (0);
+}
+
+int	tests_readline()
 {
 	char *s;
-	t_shell *shell;
 
-	ft_putstr_fd(env[0], 1);
-	ft_putchar_fd('\n', 1);
-
-	// REPL -> Read Evaluate Print Loop asdfaa
-	shell = init();
+	rl_bind_key(27, keyPressed);
+	rl_bind_key(92, keyPressed2);
 	while (s = readline(">>"))
 	{
 		printf("%s\n", s);
 		add_history(s);
 		rl_redisplay();
-		parse_line(s, shell);
 	}
 	return (0);
 }
