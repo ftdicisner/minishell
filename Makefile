@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 19:43:06 by dicisner          #+#    #+#              #
-#    Updated: 2022/03/03 11:15:58 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/04 08:48:47 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ PARSER_DIR = parser
 EXECUTOR_DIR = executor
 
 OBJ_DIR = build
-LIBFT_DIR = lib/libft
+LIBFT_DIR = libs/libft
 INCLUDES_DIR = includes
 
 LIBFT = $(LIBFT_DIR)/libft.a
