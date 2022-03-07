@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 19:43:06 by dicisner          #+#    #+#              #
-#    Updated: 2022/03/04 08:48:47 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/07 09:49:26 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ BASE = main.c \
 	test_fork.c \
 	test_readline.c \
 
-PARSE = parse.c
+PARSE = parse.c \
+	path_parser.c
 	
 SRC = $(BASE) \
 	$(PARSE)
@@ -51,22 +52,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
 	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
 
-# 
-
-# build/parse/parse.o: src/parse/parse.c
-#	gcc -o src/parse/parse.c build/parse/parse.o
-
-# build/main.o: src/main.c
-#	gcc -o src/main.c build/main.o
-
-# ...
-
 clean:
-	$(RM) $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean:	clean
 	echo cleaning!
-	$(RM) $(NAME)
+	rm -rf $(NAME)
 	echo done!
 
 re: fclean all

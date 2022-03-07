@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/02/28 08:51:05 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/07 09:28:59 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,38 @@ int	count_splitted(char **s_arr)
 	return (n);
 }
 
+// ['cd diego paco', 'echo diego']
 void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 {
 	t_cmd	**cmds;
 	t_cmd	*cmd;
+	char	**splitted_args;
 	int		n_commands;
+	int		n_args;
+	int		j;
 	int		i;
 
+	n_commands = count_splitted(s_by_pipes);
 	cmds = malloc(sizeof(t_cmd *) * (n_commands));
 	i = 0;
 	while (i < n_commands)
 	{
 		cmd = malloc(sizeof(t_cmd));
-		cmd->args = ft_split(s_by_pipes[i], ' ');
+		// ['cd', 'diego', 'paco']
+		splitted_args = ft_split(s_by_pipes[i], ' ');
+		j = 0;
+		if (splitted_args != 0)
+		{
+			n_args = count_splitted(splitted_args) - 1;
+			cmd->name = splitted_args[0];
+			cmd->args = malloc(sizeof(char *) * n_args);
+			while (j < n_args) 
+			{
+				cmd->args[j] = splitted_args[j + 1];
+				j++;
+			}
+			cmd->n_args = n_args;
+		}
 		cmds[i] = cmd;
 		i++;
 	}
@@ -68,14 +87,25 @@ void	debug_print_parsed_info(t_shell *shell)
 
 	while (i < shell->n_cmds)
 	{
-		printf("ARG %d: %s", i, shell->cmds[i]->args[0]);
+
+		printf("CMD %d: %s ARGS: [", i, shell->cmds[i]->name);
+		int j = 0;
+		while (j < shell->cmds[i]->n_args)
+		{
+			printf("%s",shell->cmds[i]->args[j]);
+			if (j != shell->cmds[i]->n_args - 1) {
+				printf(",");
+			}
+			j++;
+		}
+		printf("]\n");
+		i++;
 	}
 }
 
 void	parse_line(char *input, t_shell *shell)
 {
 	char 	**splitted_by_pipe;
-	int		n_commands;	
 
 	splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
