@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/14 12:26:21 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:09:30 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@
  * char ** ["echo"] ["asdf"] ["saf"] [0]
  * char ** 0
 */
-
-int	count_splitted(char **s_arr)
-{
-	int n;
-
-	n = 0;
-	while (s_arr[n] != 0)
-	{
-		n++;
-	}
-	return (n);
-}
 
 // ['cd diego paco', 'echo diego']
 void	split_cmd_args(char **s_by_pipes, t_shell *shell)

@@ -6,18 +6,42 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/14 12:08:45 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:13:22 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	debug(t_shell *shell)
+{
+	debug_env_vars(shell->env_vars);
+	export_var(shell->env_vars, "HELLO", "WORLD");
+
+	debug_env_vars(shell->env_vars);
+
+	export_var(shell->env_vars, "HELLO", "HELL");
+	debug_env_vars(shell->env_vars);
+
+	unset_var(shell->env_vars, "HELLO");
+	debug_env_vars(shell->env_vars);
+
+	unset_var(shell->env_vars, "NVM_BIN");
+	debug_env_vars(shell->env_vars);
+
+	t_var *var = find_var(shell->env_vars, "SHELL");
+	printf("VAR FOUND: %s, %s\n", var->key, var->value);
+}
 
 t_shell	*init(char** env)
 {
 	t_shell *shell;
 
 	shell = malloc(sizeof(shell));
+
+	// move env variables to a linked list which contents are key-value
+	shell->env_vars = init_env(env);
 	shell->paths = get_path_var(env);
+	// debug(shell);
 	return (shell);
 }
 
