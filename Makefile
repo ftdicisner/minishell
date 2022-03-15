@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/15 13:12:29 by jfrancis         ###   ########.fr        #
+#    Updated: 2022/03/15 11:24:46 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ BASE = main.c \
 PARSE = parse.c \
 	path_parser.c
 
+EXECUTOR = executor.c
+
 BUILTINS = echo.c \
 	cd.c
 
@@ -49,6 +51,7 @@ SRC_FULL = $(addprefix $(SRC_DIR)/, $(BASE)) \
 	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE)) \
 	$(addprefix $(SRC_DIR)/$(BULTINS_DIR)/, $(BUILTINS)) \
 	$(addprefix $(SRC_DIR)/$(ENV_DIR)/, $(ENV)) \
+	$(addprefix $(SRC_DIR)/$(EXECUTOR_DIR)/, $(EXECUTOR)) 
 
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FULL))
 
