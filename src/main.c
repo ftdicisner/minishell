@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/07 09:49:09 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:08:45 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char** env)
 	shell = init(env);
 	while (s = readline(">>"))
 	{
-		printf("%s\n", s);
+		// printf("%s\n", s);
 		add_history(s);
 		rl_redisplay();
 		parse_line(s, shell);

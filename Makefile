@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
+#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 19:43:06 by dicisner          #+#    #+#              #
-#    Updated: 2022/03/07 09:49:26 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/15 12:54:52 by jfrancis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC = gcc -g
 
 SRC_DIR = src
 PARSER_DIR = parser
+BULTINS_DIR = builtins
 EXECUTOR_DIR = executor
 
 OBJ_DIR = build
@@ -29,19 +30,24 @@ BASE = main.c \
 
 PARSE = parse.c \
 	path_parser.c
-	
+
+BUILTINS = echo.c |
+	cd.c
+
 SRC = $(BASE) \
-	$(PARSE)
+	$(PARSE) \
+	$(BUILTINS)
 
 SRC_FULL = $(addprefix $(SRC_DIR)/, $(BASE)) \
-	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE))
+	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE)) \
+	$(addprefix $(SRC_DIR)/$(BULTINS_DIR)/, $(BUILTINS))
 
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FULL))
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	$(CC) -o $@ $^ -lreadline 
+	$(CC) -o $@ $^ -lreadline
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -49,6 +55,7 @@ $(LIBFT):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
 	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
 	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
 
@@ -64,5 +71,5 @@ re: fclean all
 
 install:
 	sudo apt-get install libreadline-dev
-	
+
 .PHONY: all clean fclean re install
