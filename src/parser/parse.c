@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/07 09:28:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:02:56 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@
  * char ** ["echo"] ["asdf"] ["saf"] [0]
  * char ** 0
 */
-
-int	count_splitted(char **s_arr)
-{
-	int n;
-
-	n = 0;
-	while (s_arr[n] != 0)
-	{
-		n++;
-	}
-	return (n);
-}
 
 // ['cd diego paco', 'echo diego']
 void	split_cmd_args(char **s_by_pipes, t_shell *shell)
