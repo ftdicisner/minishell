@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/07 09:28:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:09:30 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/** 
+/**
  * What to do here?
  * Receive a line of text
  * that might contain commands, arguments
@@ -29,18 +29,6 @@
  * char ** ["echo"] ["asdf"] ["saf"] [0]
  * char ** 0
 */
-
-int	count_splitted(char **s_arr)
-{
-	int n;
-
-	n = 0;
-	while (s_arr[n] != 0)
-	{
-		n++;
-	}
-	return (n);
-}
 
 // ['cd diego paco', 'echo diego']
 void	split_cmd_args(char **s_by_pipes, t_shell *shell)
@@ -67,13 +55,15 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 			n_args = count_splitted(splitted_args) - 1;
 			cmd->name = splitted_args[0];
 			cmd->args = malloc(sizeof(char *) * n_args);
-			while (j < n_args) 
+			while (j < n_args)
 			{
 				cmd->args[j] = splitted_args[j + 1];
 				j++;
 			}
 			cmd->n_args = n_args;
 		}
+		if (ft_strncmp(cmd->name, "echo", 4) == 0)
+			builtin_echo(cmd);
 		cmds[i] = cmd;
 		i++;
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
+#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/06 19:43:06 by dicisner          #+#    #+#              #
-#    Updated: 2022/03/07 09:49:26 by dicisner         ###   ########.fr        #
+#    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
+#    Updated: 2022/03/15 13:12:29 by jfrancis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ CC = gcc -g
 
 SRC_DIR = src
 PARSER_DIR = parser
+BULTINS_DIR = builtins
 EXECUTOR_DIR = executor
+ENV_DIR = env
 
 OBJ_DIR = build
 LIBFT_DIR = libs/libft
@@ -26,22 +28,34 @@ LIBFT = $(LIBFT_DIR)/libft.a
 BASE = main.c \
 	test_fork.c \
 	test_readline.c \
+	utils.c
 
 PARSE = parse.c \
 	path_parser.c
-	
+
+BUILTINS = echo.c \
+	cd.c
+
+ENV = env.c \
+	export.c \
+	unset.c
+
 SRC = $(BASE) \
-	$(PARSE)
+	$(PARSE) \
+	$(BUILTINS) \
+	$(ENV)
 
 SRC_FULL = $(addprefix $(SRC_DIR)/, $(BASE)) \
-	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE))
+	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE)) \
+	$(addprefix $(SRC_DIR)/$(BULTINS_DIR)/, $(BUILTINS)) \
+	$(addprefix $(SRC_DIR)/$(ENV_DIR)/, $(ENV)) \
 
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FULL))
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	$(CC) -o $@ $^ -lreadline 
+	$(CC) -o $@ $^ -lreadline
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -49,7 +63,9 @@ $(LIBFT):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
 	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
 	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
 
 clean:
@@ -64,5 +80,5 @@ re: fclean all
 
 install:
 	sudo apt-get install libreadline-dev
-	
+
 .PHONY: all clean fclean re install
