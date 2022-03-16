@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/15 13:09:30 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/16 11:45:53 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 			}
 			cmd->n_args = n_args;
 		}
-		if (ft_strncmp(cmd->name, "echo", 4) == 0)
-			builtin_echo(cmd);
 		cmds[i] = cmd;
 		i++;
 	}
