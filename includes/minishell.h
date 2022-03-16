@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/15 13:08:56 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/16 09:20:18 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
 
 void	builtin_echo(t_cmd *cmd);
+void	executor(t_shell *shell);
 
 // Debug
 void	debug_env_vars(t_list *head);
