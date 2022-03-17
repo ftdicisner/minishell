@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 09:33:10 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 09:41:46 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/17 09:57:26 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	builtin_env(t_cmd *cmd, t_shell *shell)
 {
 	if (cmd->n_args > 1)
 	{
-		printf("Error\n");
+		printf(TOO_MANY_ARGS);
 	}
 	else 
 	{

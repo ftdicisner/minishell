@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/15 10:56:47 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/17 10:41:22 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,21 @@ t_list	*unset_var(t_list *head, char *key)
 		tmp = tmp->next;
 	}
 	return (head);
+}
+
+// Tests to pass
+// unset one var: unset x
+// unset multiple vars: unset x a y z
+// unset non-existence var: unset this_var_doesnt_exist
+// 
+void	builtin_unset(t_cmd *cmd, t_shell *shell)
+{
+	int		i;
+
+	i = 0;
+	while (i < cmd->n_args)
+	{
+		unset_var(shell->env_vars, cmd->args[i]);
+		i++;
+	}
 }

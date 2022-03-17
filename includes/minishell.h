@@ -6,21 +6,24 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 10:25:13 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/17 10:30:34 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/wait.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#include "../libs/libft/src/libft.h"
+# include "../libs/libft/src/libft.h"
+
+# define TOO_MANY_ARGS "Too many arguments.\n"
+# define NO_SUCH_FILE "No such file or directory.\n"
 
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
@@ -42,9 +45,9 @@ typedef struct	s_var
 	char *value;
 }				t_var;
 
+// parser
 void	parse_line(char *input, t_shell *shell);
 char    **get_path_var(char **envp);
-int		count_splitted(char **s_arr);
 t_list	*init_env(char **env);
 t_list	*export_var(t_list *head, char *key, char *value);
 t_list	*unset_var(t_list *head, char *key);
@@ -52,9 +55,19 @@ t_var	*find_var(t_list *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
 
+// builtins
 void	builtin_echo(t_cmd *cmd);
 void	builtin_env(t_cmd *cmd, t_shell *shell);
+int		builtin_cd(t_cmd *cmd);
+void	builtin_export(t_cmd *cmd, t_shell *shell);
+void	builtin_unset(t_cmd *cmd, t_shell *shell);
+
+// executor
 void	executor(t_shell *shell);
+
+// utils
+int		count_splitted(char **s_arr);
+int		ft_strcmp(char *s1, char *s2);
 
 // Debug
 void	debug_env_vars(t_list *head);
