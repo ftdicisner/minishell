@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 13:47:36 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/17 10:30:34 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # include "../libs/libft/src/libft.h"
 
-# define TOO_MANY_ARGS "Too many arguments."
-# define NO_SUCH_FILE "No such file or directory."
+# define TOO_MANY_ARGS "Too many arguments.\n"
+# define NO_SUCH_FILE "No such file or directory.\n"
 
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
@@ -52,10 +52,16 @@ t_list	*init_env(char **env);
 t_list	*export_var(t_list *head, char *key, char *value);
 t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
+int		ft_strcmp(char *s1, char *s2);
+char	*concat_strs(char **input);
 
 // builtins
 void	builtin_echo(t_cmd *cmd);
+void	builtin_env(t_cmd *cmd, t_shell *shell);
 int		builtin_cd(t_cmd *cmd);
+void	builtin_export(t_cmd *cmd, t_shell *shell);
+void	builtin_unset(t_cmd *cmd, t_shell *shell);
+
 // executor
 void	executor(t_shell *shell);
 

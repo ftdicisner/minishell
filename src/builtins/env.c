@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 09:55:11 by dicisner         ###   ########.fr       */
+/*   Created: 2022/03/16 09:33:10 by dicisner          #+#    #+#             */
+/*   Updated: 2022/03/17 09:57:26 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	count_splitted(char **s_arr)
+void print_var(void *void_var)
 {
-	int	n;
-
-	n = 0;
-	while (s_arr[n] != 0)
-	{
-		n++;
-	}
-	return (n);
+	t_var *var;
+	
+	var = (t_var *)void_var;
+	printf("%s=%s\n", var->key, var->value);
 }
 
-int	ft_strcmp(char *s1, char *s2)
+void debug_env_vars(t_list *head)
 {
-	int	s1_len;
-	int	s2_len;
+	printf("######################## ENV VARS: \n");
+	ft_lstiter(head, print_var);
+}
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	if (s1_len != s2_len)
-		return (1);
-	else
-		return (ft_strncmp(s1, s2, s1_len));
+void	builtin_env(t_cmd *cmd, t_shell *shell)
+{
+	if (cmd->n_args > 1)
+	{
+		printf(TOO_MANY_ARGS);
+	}
+	else 
+	{
+		ft_lstiter(shell->env_vars, print_var);
+	}
 }
