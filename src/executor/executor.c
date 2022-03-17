@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 09:19:57 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/16 09:58:42 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	executor(t_shell *shell)
 	{
 		t_cmd *cmd = shell->cmds[0];
 
-		if (cmd->name == "echo")
+		if (ft_strcmp(cmd->name, "echo") == 0)
 		{
 			
 		}
-		if (cmd->name == "cd")
+		if (ft_strcmp(cmd->name, "cd") == 0)
 		{
 
-		}
-		if (cmd->name == "EXPORT" )
+		}	
+		if (ft_strcmp(cmd->name, "env") == 0)
 		{
-
+			builtin_env(cmd, shell);
 		}
 	}
 }

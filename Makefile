@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/15 11:24:46 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/16 09:37:37 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,14 @@ BASE = main.c \
 	utils.c
 
 PARSE = parse.c \
-	path_parser.c
+	path_parser.c \
+	env_parser.c
 
 EXECUTOR = executor.c
 
 BUILTINS = echo.c \
-	cd.c
-
-ENV = env.c \
+	cd.c \
+	env.c \
 	export.c \
 	unset.c
 

@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 09:20:18 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/16 10:25:13 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ t_list	*init_env(char **env);
 t_list	*export_var(t_list *head, char *key, char *value);
 t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
+int		ft_strcmp(char *s1, char *s2);
+char	*concat_strs(char **input);
 
 void	builtin_echo(t_cmd *cmd);
+void	builtin_env(t_cmd *cmd, t_shell *shell);
 void	executor(t_shell *shell);
 
 // Debug
