@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 11:38:17 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:23:33 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*concat_strs(char **input);
 // builtins
 void	builtin_echo(t_cmd *cmd, t_shell *shell);
 void	builtin_env(t_cmd *cmd, t_shell *shell);
-int		builtin_cd(t_cmd *cmd);
+int		builtin_cd(t_cmd *cmd, t_shell *shell);
 void	builtin_pwd(t_cmd *cmd, t_shell *shell);
 void	builtin_export(t_cmd *cmd, t_shell *shell);
 void	builtin_unset(t_cmd *cmd, t_shell *shell);
