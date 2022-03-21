@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 09:55:11 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/21 09:43:50 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,23 @@ int	ft_strcmp(char *s1, char *s2)
 		return (1);
 	else
 		return (ft_strncmp(s1, s2, s1_len));
+}
+
+char	**lststr_to_arr(t_list *lst)
+{
+	int		i;
+	int		size;
+	char	**output;
+
+	size = ft_lstsize(lst);
+	output = malloc((sizeof(char *) * size) + 1);
+	i = 0;
+	while (i < size)
+	{
+		output[i] = ft_strdup(lst->content);
+		lst = lst->next;
+		i++;
+	}
+	output[i] = 0;
+	return (output);
 }

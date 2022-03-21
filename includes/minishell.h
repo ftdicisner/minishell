@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 10:30:34 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/21 10:07:02 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,23 @@
 # define TOO_MANY_ARGS "Too many arguments.\n"
 # define NO_SUCH_FILE "No such file or directory.\n"
 
+typedef enum e_redir_mode {
+	SINGLE, // >
+	DOUBLE // >>
+}			t_redir_mode;
+
+typedef struct s_redir {
+	char		*file;
+	t_redir_mode mode;		
+}				t_redir;
+
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
 	char	**args; // [--help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
+	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
+	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
 }				t_cmd;
 
 typedef struct s_shell {
@@ -54,6 +66,8 @@ t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
+t_list	*parse_redir(char **args, char in_out);
+t_list	*parse_cmd(char **args);
 
 // builtins
 void	builtin_echo(t_cmd *cmd);
@@ -68,6 +82,7 @@ void	executor(t_shell *shell);
 // utils
 int		count_splitted(char **s_arr);
 int		ft_strcmp(char *s1, char *s2);
+char	**lststr_to_arr(t_list *lst);
 
 // Debug
 void	debug_env_vars(t_list *head);
