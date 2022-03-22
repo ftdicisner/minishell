@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 09:07:00 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:28:39 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv, char** env)
 
 	// REPL -> Read Evaluate Print Loop
 	shell = init(env);
-	while (s = readline("##"))
+	while (s = readline("minishell~ "))
 	{
 		// printf("%s\n", s);
 		add_history(s);

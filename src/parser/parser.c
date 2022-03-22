@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 09:50:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:19:32 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 	if (size > 0)
 	{
 		cmd->name = ft_strdup(lst->content);
-		cmd->n_args = size - 1;
-		cmd->args = lststr_to_arr(lst->next);
+		cmd->n_args = size;
+		cmd->args = lststr_to_arr(lst);
 	}
 	else {
 		cmd->name = 0;

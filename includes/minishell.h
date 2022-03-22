@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 09:06:49 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:08:22 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define TOO_MANY_ARGS "Too many arguments."
 # define NO_SUCH_FILE "No such file or directory."
 # define INVALID_INPUT "Invalid input."
+# define COMMAND_NOT_FOUND "Command not found."
 
 typedef enum e_redir_mode {
 	SINGLE, // >
@@ -67,6 +68,7 @@ t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
+char	**lst_env_to_strs(t_list *env);
 t_list	*parse_redir(char **args, char in_out);
 t_list	*parse_cmd(char **args);
 
@@ -78,9 +80,9 @@ void	builtin_pwd(t_cmd *cmd, t_shell *shell);
 void	builtin_export(t_cmd *cmd, t_shell *shell);
 void	builtin_unset(t_cmd *cmd, t_shell *shell);
 
-
 // executor
 void	executor(t_shell *shell);
+void	default_exec(t_cmd *cmd, t_shell *shell);
 
 // utils
 int		count_splitted(char **s_arr);
