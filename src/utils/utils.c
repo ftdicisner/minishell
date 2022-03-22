@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 11:37:49 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:08:06 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,24 @@ int	ft_strcmp(char *s1, char *s2)
 		return (ft_strncmp(s1, s2, s1_len));
 }
 
+char	**lststr_to_arr(t_list *lst)
+{
+	int		i;
+	int		size;
+	char	**output;
+
+	size = ft_lstsize(lst);
+	output = malloc((sizeof(char *) * size) + 1);
+	i = 0;
+	while (i < size)
+	{
+		output[i] = ft_strdup(lst->content);
+		lst = lst->next;
+		i++;
+	}
+	output[i] = 0;
+	return (output);
+}
 void	parse_env_var(int i, t_cmd *cmd, t_shell *shell)
 {
 	if (cmd->args[i][ft_strlen(cmd->args[i]) - 1] != '\"')

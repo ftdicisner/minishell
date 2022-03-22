@@ -6,18 +6,11 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 10:00:29 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:22:43 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-	1. Prueba concatenando el comando con cada path del ambiente
-	2. Verifica si alguno de los comando+path existe en el sistema
-	3. Si no existe ninguno bot "COmmand not found"
-	4. Si existe, la pasamso a execve
-*/
 
 char    *get_cmd(char **paths, char *cmd)
 {

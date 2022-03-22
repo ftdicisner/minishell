@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/22 09:59:40 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/22 10:07:53 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,11 @@ BASE = main.c \
 	test_fork.c \
 	test_readline.c
 
-PARSE = parse.c \
+PARSE = parser.c \
 	path_parser.c \
-	env_parser.c
+	env_parser.c \
+	redir_parser.c \
+	cmd_parser.c
 
 EXECUTOR = executor.c \
 	executables.c
