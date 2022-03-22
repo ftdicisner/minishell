@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/21 09:17:02 by dicisner         ###   ########.fr        #
+#    Updated: 2022/03/22 09:06:23 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ PARSER_DIR = parser
 BULTINS_DIR = builtins
 EXECUTOR_DIR = executor
 ENV_DIR = env
+UTILS_DIR = utils
 
 OBJ_DIR = build
 LIBFT_DIR = libs/libft
@@ -27,8 +28,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 BASE = main.c \
 	test_fork.c \
-	test_readline.c \
-	utils.c
+	test_readline.c
 
 PARSE = parser.c \
 	path_parser.c \
@@ -40,20 +40,26 @@ EXECUTOR = executor.c
 
 BUILTINS = echo.c \
 	cd.c \
+	pwd.c \
 	env.c \
 	export.c \
 	unset.c
 
+UTILS = error.c \
+		utils.c
+
 SRC = $(BASE) \
 	$(PARSE) \
 	$(BUILTINS) \
-	$(ENV)
+	$(ENV) \
+	$(UTILS)
 
 SRC_FULL = $(addprefix $(SRC_DIR)/, $(BASE)) \
 	$(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE)) \
 	$(addprefix $(SRC_DIR)/$(BULTINS_DIR)/, $(BUILTINS)) \
 	$(addprefix $(SRC_DIR)/$(ENV_DIR)/, $(ENV)) \
-	$(addprefix $(SRC_DIR)/$(EXECUTOR_DIR)/, $(EXECUTOR)) 
+	$(addprefix $(SRC_DIR)/$(EXECUTOR_DIR)/, $(EXECUTOR)) \
+	$(addprefix $(SRC_DIR)/$(UTILS_DIR)/, $(UTILS))
 
 OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FULL))
 
@@ -71,6 +77,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
 	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
 	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
 	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
 
 clean:

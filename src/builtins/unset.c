@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 10:41:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:25:56 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_list	*unset_var_aux(t_list *head, t_list *prev, t_list *curr)
 		prev->next = curr->next;
 		ft_lstdelone(curr, del_var);
 		return (head);
-	}	
+	}
 }
 
 t_list	*unset_var(t_list *head, char *key)
@@ -61,7 +61,7 @@ t_list	*unset_var(t_list *head, char *key)
 // unset one var: unset x
 // unset multiple vars: unset x a y z
 // unset non-existence var: unset this_var_doesnt_exist
-// 
+//
 void	builtin_unset(t_cmd *cmd, t_shell *shell)
 {
 	int		i;

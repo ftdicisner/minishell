@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 10:07:02 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:06:49 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 # include "../libs/libft/src/libft.h"
 
-# define TOO_MANY_ARGS "Too many arguments.\n"
-# define NO_SUCH_FILE "No such file or directory.\n"
+# define TOO_MANY_ARGS "Too many arguments."
+# define NO_SUCH_FILE "No such file or directory."
+# define INVALID_INPUT "Invalid input."
 
 typedef enum e_redir_mode {
 	SINGLE, // >
@@ -70,11 +71,13 @@ t_list	*parse_redir(char **args, char in_out);
 t_list	*parse_cmd(char **args);
 
 // builtins
-void	builtin_echo(t_cmd *cmd);
+void	builtin_echo(t_cmd *cmd, t_shell *shell);
 void	builtin_env(t_cmd *cmd, t_shell *shell);
-int		builtin_cd(t_cmd *cmd);
+int		builtin_cd(t_cmd *cmd, t_shell *shell);
+void	builtin_pwd(t_cmd *cmd, t_shell *shell);
 void	builtin_export(t_cmd *cmd, t_shell *shell);
 void	builtin_unset(t_cmd *cmd, t_shell *shell);
+
 
 // executor
 void	executor(t_shell *shell);
@@ -83,6 +86,9 @@ void	executor(t_shell *shell);
 int		count_splitted(char **s_arr);
 int		ft_strcmp(char *s1, char *s2);
 char	**lststr_to_arr(t_list *lst);
+void	print_error(char *cmd, char *error_msg);
+void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
+void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 
 // Debug
 void	debug_env_vars(t_list *head);
