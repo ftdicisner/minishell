@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 10:37:21 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:07:00 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv, char** env)
 
 	// REPL -> Read Evaluate Print Loop
 	shell = init(env);
-	while (s = readline(">>"))
+	while (s = readline("##"))
 	{
 		// printf("%s\n", s);
 		add_history(s);

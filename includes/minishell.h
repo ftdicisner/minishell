@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 13:23:33 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:06:49 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,23 @@
 # define NO_SUCH_FILE "No such file or directory."
 # define INVALID_INPUT "Invalid input."
 
+typedef enum e_redir_mode {
+	SINGLE, // >
+	DOUBLE // >>
+}			t_redir_mode;
+
+typedef struct s_redir {
+	char		*file;
+	t_redir_mode mode;		
+}				t_redir;
+
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
 	char	**args; // [--help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
+	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
+	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
 }				t_cmd;
 
 typedef struct s_shell {
@@ -55,6 +67,8 @@ t_list	*unset_var(t_list *head, char *key);
 t_var	*find_var(t_list *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
+t_list	*parse_redir(char **args, char in_out);
+t_list	*parse_cmd(char **args);
 
 // builtins
 void	builtin_echo(t_cmd *cmd, t_shell *shell);
@@ -71,6 +85,7 @@ void	executor(t_shell *shell);
 // utils
 int		count_splitted(char **s_arr);
 int		ft_strcmp(char *s1, char *s2);
+char	**lststr_to_arr(t_list *lst);
 void	print_error(char *cmd, char *error_msg);
 void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
