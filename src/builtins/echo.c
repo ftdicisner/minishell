@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/03/16 13:48:23 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/21 11:37:43 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ void	echo_output(int i, t_cmd *cmd)
 	}
 }
 
-void	builtin_echo(t_cmd *cmd)
+/* Tests to pass:
+	echo "string within double quotation marks"
+	echo 'string within single quotation marks'
+	echo "$ENV_VAR"
+	echo '$ENV_VAR'
+	echo string sem aspas
+	echo
+*/
+void	builtin_echo(t_cmd *cmd, t_shell *shell)
 {
 	char	*flag;
 	int		n_flag;
@@ -47,7 +55,10 @@ void	builtin_echo(t_cmd *cmd)
 		}
 		else
 		{
-			echo_output(i, cmd);
+			if (cmd->args[i][0] == '\"')
+				parse_env_var(i, cmd, shell);
+			else
+				echo_output(i, cmd);
 		}
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 10:30:34 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:23:33 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 # include "../libs/libft/src/libft.h"
 
-# define TOO_MANY_ARGS "Too many arguments.\n"
-# define NO_SUCH_FILE "No such file or directory.\n"
+# define TOO_MANY_ARGS "Too many arguments."
+# define NO_SUCH_FILE "No such file or directory."
+# define INVALID_INPUT "Invalid input."
 
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
@@ -56,11 +57,13 @@ int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
 
 // builtins
-void	builtin_echo(t_cmd *cmd);
+void	builtin_echo(t_cmd *cmd, t_shell *shell);
 void	builtin_env(t_cmd *cmd, t_shell *shell);
-int		builtin_cd(t_cmd *cmd);
+int		builtin_cd(t_cmd *cmd, t_shell *shell);
+void	builtin_pwd(t_cmd *cmd, t_shell *shell);
 void	builtin_export(t_cmd *cmd, t_shell *shell);
 void	builtin_unset(t_cmd *cmd, t_shell *shell);
+
 
 // executor
 void	executor(t_shell *shell);
@@ -68,6 +71,9 @@ void	executor(t_shell *shell);
 // utils
 int		count_splitted(char **s_arr);
 int		ft_strcmp(char *s1, char *s2);
+void	print_error(char *cmd, char *error_msg);
+void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
+void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 
 // Debug
 void	debug_env_vars(t_list *head);
