@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 11:46:32 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/22 10:04:28 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 	while (i < n_commands)
 	{
 		cmd = malloc(sizeof(t_cmd));
-		// ['cd', 'diego', 'paco']
 		splitted_args = ft_split(s_by_pipes[i], ' ');
 		j = 0;
 		if (splitted_args != 0)

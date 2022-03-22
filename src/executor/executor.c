@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 13:23:08 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:29:21 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ void	executor(t_shell *shell)
 			builtin_export(cmd, shell);
 		if (ft_strcmp(cmd->name, "unset") == 0)
 			builtin_unset(cmd, shell);
+		else
+			default_exec(cmd, shell);
 	}
 }

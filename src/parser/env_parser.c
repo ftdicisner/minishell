@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 10:11:05 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/16 10:43:49 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:58:04 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,27 @@ t_list *init_env(char **env)
 		}
 	}
 	return (head);
+}
+
+char	**lst_env_to_strs(t_list *env)
+{
+	int		size;
+	int		i;
+	char	**output;
+	char	*prefix;
+	char	*tmp;
+
+	size = ft_lstsize(env);
+	output = ft_calloc(size + 1, sizeof(char*));
+	i = 0;
+	while (i < size)
+	{
+		prefix = ft_strjoin(((t_var *)env->content)->key, "=");
+		tmp = ft_strjoin(prefix, ((t_var *)env->content)->value);
+		free(prefix);
+		output[i] = tmp;
+		env = env->next;
+		i++;	
+	}
+	return (output);
 }

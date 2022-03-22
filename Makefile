@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/21 11:34:45 by jfrancis         ###   ########.fr        #
+#    Updated: 2022/03/22 09:59:40 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ PARSE = parse.c \
 	path_parser.c \
 	env_parser.c
 
-EXECUTOR = executor.c
+EXECUTOR = executor.c \
+	executables.c
 
 BUILTINS = echo.c \
 	cd.c \
