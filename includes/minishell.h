@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 10:08:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:00:04 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ typedef enum e_redir_mode {
 
 typedef struct s_redir {
 	char		*file;
-	t_redir_mode mode;		
+	t_redir_mode mode;
 }				t_redir;
 
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
-	char	**args; // [--help, -lh]
+	char	**args; // [cd, --help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
 	t_list	*in_r; // each file in order that comes with the "<" or "<" flag

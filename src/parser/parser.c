@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 10:19:32 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:01:37 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	parse_line(char *input, t_shell *shell)
 
 	splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
-	debug_print_parsed_info(shell);
+	// debug_print_parsed_info(shell);
 }
 
 //  DEBUG STUFF
@@ -116,7 +116,7 @@ void	debug_print_parsed_info(t_shell *shell)
 			j++;
 		}
 		printf("]\n");
-		j = 0;	
+		j = 0;
 		printf("IN-FILES: [");
 		ft_lstiter(cmd->in_r, print_r_dir);
 		printf("]\n");
