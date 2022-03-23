@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 13:25:56 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/23 09:02:05 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	builtin_unset(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	while (i < cmd->n_args)
 	{
 		unset_var(shell->env_vars, cmd->args[i]);
