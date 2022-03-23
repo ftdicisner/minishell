@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:55:08 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/03/23 11:25:11 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:38:48 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ int	builtin_cd(t_cmd *cmd, t_shell *shell)
 		export_var(shell->env_vars, "PWD", getcwd(buffer, 0));
 	return (i);
 }
+c

@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/23 11:12:06 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:39:31 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	builtin_export(t_cmd *cmd, t_shell *shell)
 	char	*value;
 	char	**splitted;
 
-	i = 0;
+	i = 1;
 	while (i < cmd->n_args)
 	{
 		if (ft_strchr(cmd->args[i], '=') != 0)
