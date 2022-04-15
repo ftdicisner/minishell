@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:13:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 09:00:54 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:26:10 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_redir	*find_redir(char **args, t_list *head, char in_out, int *i)
 	return (NULL);
 }
 
+// Returns a list of t_redir (filenames + mode [single, double])
 t_list	*parse_redir(char **args, char in_out)
 {
 	int		i;
