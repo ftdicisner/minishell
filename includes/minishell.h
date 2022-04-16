@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/15 18:38:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/15 19:00:14 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ typedef enum e_redir_mode {
 
 typedef struct s_redir {
 	char		*file;
-	t_redir_mode mode;		
+	t_redir_mode mode;
 }				t_redir;
 
 typedef struct s_cmd {
 	char	*name; // cd , echo, ls
-	char	**args; // [--help, -lh]
+	char	**args; // [cd, --help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
 }				t_cmd;

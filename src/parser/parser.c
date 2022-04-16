@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/15 18:56:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/15 19:00:04 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	parse_line(char *input, t_shell *shell)
 	shell->out_r = NULL;
 	splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
-	debug_print_parsed_info(shell);
+	// debug_print_parsed_info(shell);
 }
 
 //  DEBUG STUFF

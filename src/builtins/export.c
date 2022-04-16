@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/23 09:00:49 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:39:31 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_var	*find_var(t_list *head, char *key)
 	t_var	*var;
 
 	new = find_node_var(head, key);
-	if (new != NULL) 
+	if (new != NULL)
 		return (t_var *)(new->content);
 	return (NULL);
 }
@@ -48,12 +48,12 @@ t_list	*export_var(t_list *head, char *key, char *value)
 	t_var	*var;
 
 	new = find_node_var(head, key);
-	if (new != NULL) 
+	if (new != NULL)
 	{
 		var = (t_var *)new->content;
 		var->value = value;
 	}
-	else 
+	else
 	{
 		var = malloc(sizeof(t_var));
 		var->key = key;
@@ -65,12 +65,12 @@ t_list	*export_var(t_list *head, char *key, char *value)
 }
 
 // Tests to pass:
-// add once: export a=5 
+// add once: export a=5
 // add multiple: export a=5 b=9 x=10
 // add empty: export c=
 // add without '=': export x g
 // add with multiples '=': export ringo=1=1234=sherlock
-// updated var: export a=9 // export a=15 
+// updated var: export a=9 // export a=15
 void	builtin_export(t_cmd *cmd, t_shell *shell)
 {
 	int		i;

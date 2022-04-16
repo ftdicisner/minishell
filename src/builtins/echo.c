@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/03/21 11:37:43 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:03:16 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	builtin_echo(t_cmd *cmd, t_shell *shell)
 	int		i;
 
 	n_flag = 0;
-	i = 0;
+	i = 1;
 	flag = "-n";
 	while (i < cmd->n_args)
 	{
