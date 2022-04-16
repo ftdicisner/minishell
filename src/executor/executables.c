@@ -6,12 +6,14 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 10:22:43 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:37:55 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Returns the full command path if exist
+// Returns NULL if doesn't exist
 char    *get_cmd(char **paths, char *cmd)
 {
     char    *tmp;
