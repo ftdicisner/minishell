@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/23 11:00:04 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/04/15 21:10:04 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		builtin_cd(t_cmd *cmd, t_shell *shell);
 void	builtin_pwd(t_cmd *cmd, t_shell *shell);
 void	builtin_export(t_cmd *cmd, t_shell *shell);
 void	builtin_unset(t_cmd *cmd, t_shell *shell);
+void	builtin_exit(t_cmd *cmd, t_shell *shell);
 
 // executor
 void	executor(t_shell *shell);
@@ -91,6 +92,7 @@ char	**lststr_to_arr(t_list *lst);
 void	print_error(char *cmd, char *error_msg);
 void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
+void	destroy_shell(t_shell *shell);
 
 // Debug
 void	debug_env_vars(t_list *head);
