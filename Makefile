@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
+#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/03/22 10:07:53 by dicisner         ###   ########.fr        #
+#    Updated: 2022/04/26 20:35:19 by jfrancis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ BUILTINS = echo.c \
 	cd.c \
 	pwd.c \
 	env.c \
+	exit.c \
 	export.c \
 	unset.c
 
