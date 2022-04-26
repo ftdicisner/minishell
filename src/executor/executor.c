@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/23 11:44:41 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:41:03 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	executor(t_shell *shell)
 	{
 		t_cmd *cmd = shell->cmds[0];
 
+		if (ft_strcmp(cmd->name, "exit") == 0)
+			builtin_exit(cmd, shell);
 		int pid = fork();
 
 		if (pid == 0)

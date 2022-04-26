@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/15 19:00:04 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:34:38 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 void	parse_line(char *input, t_shell *shell)
 {
 	char 	**splitted_by_pipe;
-	
+
 	shell->in_r = NULL;
 	shell->out_r = NULL;
 	splitted_by_pipe = ft_split(input, '|');
