@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/16 12:47:17 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:31:09 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	executor(t_shell *shell)
 		}
 		else
 		{
-			dup2(fd[0], 0);
+			// dup2(fd[0], 0);
 			int bsize = 256;
 			char buf[bsize+1];
 			ssize_t n = 0;
