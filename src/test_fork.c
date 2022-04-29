@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 18:02:52 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/27 20:15:49 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/29 18:44:54 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 // 	if (pipe(fd) != -1) {
 // 		int id = fork();
 
-// 		// Child process
 // 		if (id == 0) 
 // 		{
 // 			int x;
@@ -31,7 +30,6 @@
 // 			write(fd[1], &x, sizeof(int));
 // 			close(fd[1]);
 // 		}
-// 		// Parente process
 // 		else {
 // 			int y;
 // 			close(fd[1]);
@@ -42,18 +40,47 @@
 // 	}
 // 	return (0);
 // }
+
+int ft_pipe(int *fd)
+{
+	pipe(fd);
+	return (0);
+}
+
+int **init_pipes(int n)
+{
+	int **fds;
+	int i;
+
+	fds = malloc(sizeof (int *) * n);
+	i = 0;
+	while (i < n)
+	{
+		fds[i] = malloc(sizeof (int) * 2);
+		i++;
+	}
+	i = 0;
+	while (i < n)
+	{
+		ft_pipe(fds[i]);
+		i++;
+	}
+	return fds;
+}
+
 void executor_test()
 {
 	int cmds = 2; // numero de comandos
 	int isChild = 0;
+	int **pipes = init_pipes(2);
 
-	int fd1[2];
-	int fd2[2];
+	int *fd1 = pipes[0];
+	int *fd2 = pipes[1];
 
-	if (pipe(fd1) == -1)
-		printf("Error al crear el pipe");
-	if (pipe(fd2) == -1)
-		printf("Error al crear el pipe");
+	// if (pipe(fd1) == -1)
+	// 	printf("Error al crear el pipe");
+	// if (pipe(fd2) == -1)
+	// 	printf("Error al crear el pipe");
 
 	for (int i = 0; i < cmds ; i++) 
 	{
