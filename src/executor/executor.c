@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 17:17:24 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 18:46:11 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,25 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 
 	if (pid == 0)
 	{
-		if (i == 0)
+		if (i == 0 && shell->n_cmds != 1)
 		{  
 			dup2(pipes[i + 1][1], 1);
-          	if (redir)
-            	dup2(pipes[i][0], 0); 
+			close(pipes[i][0]);
+          	// if (FileIn)
+            // 	dup2(FileIn, 0); 
 		}
 		else if (i < shell->n_cmds - 1)
 		{
 			dup2(pipes[i][0], 0);
 			dup2(pipes[i + 1][1], 1);
+			close(pipes[i][0]);
 		}
 		else
 		{
 			dup2(pipes[i][0], 0);
-			dup2(pipes[shell->n_cmds][1], 1);
+			close(pipes[i][0]);
+			// if (fileOut)
+			// 	dup2(fileoutPipe, 1);
 		}
 		// if (i == 1)
 			// ft_read(pipes[1][0]);
@@ -93,6 +97,7 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	}
 	// close_pipes(shell->pipes, shell->n_cmds);
 	waitpid(pid, NULL, 0);
+	close(pipes[i + 1][1]);
 }
 
 void	executor(t_shell *shell)
@@ -105,7 +110,7 @@ void	executor(t_shell *shell)
 		execute_child(shell->cmds[i], shell, i);
 		i++;
 	}
-	dup2(shell->pipes[shell->n_cmds][0], 0);
+	// dup2(shell->pipes[shell->n_cmds][0], 0);
 	close_pipes(shell->pipes, shell->n_cmds);
-	ft_read(0);
+	// ft_read(0);
 }
