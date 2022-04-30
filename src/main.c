@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/15 18:56:28 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:39:57 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ t_shell	*init(char** env)
 	// move env variables to a linked list which contents are key-value
 	shell->env_vars = init_env(env);
 	shell->paths = get_path_var(env);
-	shell->in_r = NULL;
-	shell->out_r = NULL;
 	// debug(shell);
 	return (shell);
 }
