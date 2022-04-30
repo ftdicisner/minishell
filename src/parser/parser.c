@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/26 20:34:38 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/04/29 19:11:58 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_cmd	*create_cmd(char *cmd_str, t_shell *shell)
 	if (splitted_args != 0)
 	{
 		// to-do free the list used here
-		printf("%s\n", cmd_str);
+		// printf("%s\n", cmd_str);
 		lst_to_cmd(splitted_args, cmd);
 		tmp = parse_redir(splitted_args, '<');
 		if (shell->in_r == NULL)
