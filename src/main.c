@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 09:51:04 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 16:16:22 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	init_pipes(t_shell *shell)
 		ft_pipe(pipes[i]);
 		i++;
 	}
+	printf("Fueron creados %d pipes\n", n);
 	shell->pipes = pipes;
 }
 
