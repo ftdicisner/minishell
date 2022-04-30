@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/29 19:11:58 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:50:57 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 	}
 }
 
-t_cmd	*create_cmd(char *cmd_str, t_shell *shell)
+t_cmd	*create_cmd(char *cmd_str)
 {
 	t_cmd	*cmd;
+	int		i;
 	char	**splitted_args;
 	int		n_args;
-	t_list	*tmp;
 
+	i = 0;
 	cmd = malloc(sizeof(t_cmd));
 	splitted_args = ft_split(cmd_str, ' ');
 	if (splitted_args != 0)
@@ -47,16 +48,8 @@ t_cmd	*create_cmd(char *cmd_str, t_shell *shell)
 		// to-do free the list used here
 		// printf("%s\n", cmd_str);
 		lst_to_cmd(splitted_args, cmd);
-		tmp = parse_redir(splitted_args, '<');
-		if (shell->in_r == NULL)
-			shell->in_r = tmp;
-		else
-			ft_lstadd_back(&(shell->in_r), tmp);
-		tmp = parse_redir(splitted_args, '>');
-		if (shell->out_r == NULL)
-			shell->out_r = tmp;
-		else
-			ft_lstadd_back(&(shell->out_r), tmp);
+		cmd->in_r = parse_redir(splitted_args, '<');
+		cmd->out_r = parse_redir(splitted_args, '>');
 	}
 	return (cmd);
 }
@@ -73,7 +66,7 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 	i = 0;
 	while (i < n_commands)
 	{
-		cmds[i] = create_cmd(s_by_pipes[i], shell);
+		cmds[i] = create_cmd(s_by_pipes[i]);
 		i++;
 	}
 	shell->n_cmds = n_commands;
@@ -91,11 +84,9 @@ void	parse_line(char *input, t_shell *shell)
 {
 	char 	**splitted_by_pipe;
 
-	shell->in_r = NULL;
-	shell->out_r = NULL;
 	splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
-	// debug_print_parsed_info(shell);
+	debug_print_parsed_info(shell);
 }
 
 //  DEBUG STUFF
@@ -126,12 +117,13 @@ void	debug_print_parsed_info(t_shell *shell)
 			j++;
 		}
 		printf("]\n");
+		j = 0;
+		printf("IN-FILES: [");
+		ft_lstiter(cmd->in_r, print_r_dir);
+		printf("]\n");
+		printf("OUT-FILES: [");
+		ft_lstiter(cmd->out_r, print_r_dir);
+		printf("]\n\n");
 		i++;
 	}
-	printf("IN-FILES: [");
-	ft_lstiter(shell->in_r, print_r_dir);
-	printf("]\n");
-	printf("OUT-FILES: [");
-	ft_lstiter(shell->out_r, print_r_dir);
-	printf("]\n\n");
 }

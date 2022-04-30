@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/29 18:51:46 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:51:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_cmd {
 	char	**args; // [cd, --help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
+	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
+	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
 }				t_cmd;
 
 typedef struct s_shell {
@@ -49,9 +51,7 @@ typedef struct s_shell {
 	int		n_cmds;
 	char	**paths;
 	t_list	*env_vars;
-	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
-	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
-	int		**pipes; 
+	int 	**pipes;
 }				t_shell;
 
 typedef struct	s_var
