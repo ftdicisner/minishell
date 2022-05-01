@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 16:16:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 18:53:46 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_pipes(t_shell *shell)
 	int		i;
 	int		n;
 
-	n = shell->n_cmds + 1;
+	n = shell->n_cmds - 1;
 	pipes = malloc(sizeof (int *) * n);
 	i = 0;
 	while (i < n)
