@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/01 17:31:15 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/01 17:41:13 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,5 +95,8 @@ re: fclean all
 
 install:
 	sudo apt-get install libreadline-dev
+
+valgrindtest:
+	valgrind --suppressions=readline.supp --track-fds=yes ./minishell 
 
 .PHONY: all clean fclean re install
