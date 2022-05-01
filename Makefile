@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/04/30 19:30:51 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/01 17:31:15 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ PARSE = parser.c \
 	cmd_parser.c
 
 EXECUTOR = executor.c \
-	executables.c
+	executables.c \
+	pipes.c
 
 BUILTINS = echo.c \
 	cd.c \

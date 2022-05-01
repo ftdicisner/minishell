@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 18:53:46 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:27:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	debug(t_shell *shell)
 	printf("VAR FOUND: %s, %s\n", var->key, var->value);
 }
 
-t_shell	*init(char** env)
+t_shell	*init_shell(char** env)
 {
 	t_shell *shell;
 
@@ -45,36 +45,6 @@ t_shell	*init(char** env)
 	return (shell);
 }
 
-int ft_pipe(int *fd)
-{
-	pipe(fd);
-	return (0);
-}
-
-void	init_pipes(t_shell *shell)
-{
-	int		**pipes;
-	int		i;
-	int		n;
-
-	n = shell->n_cmds - 1;
-	pipes = malloc(sizeof (int *) * n);
-	i = 0;
-	while (i < n)
-	{
-		pipes[i] = malloc(sizeof (int) * 2);
-		i++;
-	}
-	i = 0;
-	while (i < n)
-	{
-		ft_pipe(pipes[i]);
-		i++;
-	}
-	printf("Fueron creados %d pipes\n", n);
-	shell->pipes = pipes;
-}
-
 int	main(int argc, char **argv, char** env)
 {
 	char *s;
@@ -84,7 +54,7 @@ int	main(int argc, char **argv, char** env)
 	ft_putchar_fd('\n', 1);
 
 	// REPL -> Read Evaluate Print Loop
-	shell = init(env);
+	shell = init_shell(env);
 	while (s = readline("minishell~ "))
 	{
 		// printf("%s\n", s);

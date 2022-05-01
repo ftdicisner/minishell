@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 19:34:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:39:09 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	ft_read(int fd)
 	}
 }
 
-// Iterar en cada comando generando un child process
-// En el parent
-
-void	execute_cmd(t_cmd *cmd, t_shell *shell)
+void	select_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0)
 		builtin_echo(cmd, shell);
@@ -44,55 +41,22 @@ void	execute_cmd(t_cmd *cmd, t_shell *shell)
 		default_exec(cmd, shell);
 }
 
-void	close_pipes(int **pipes, int n)
-{
-	int i;
-
-	i = 0;
-	while (i < n + 1)
-	{
-		// printf("Closing pipes %i\n", i);
-		close(pipes[i][0]);
-		close(pipes[i][1]);
-		i++;
-	}
-}
-
 void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 {
+	int pid;
+
+	// Todo: Move the exit inside the execute_cmd	
 	if (ft_strcmp(cmd->name, "exit") == 0)
 		builtin_exit(cmd, shell);
-
-	int pid = fork();
-	int **pipes = shell->pipes;
-	int redir = 0;
-
+	pid = fork();
 	if (pid == 0)
 	{
-		if (shell->n_cmds != 1)
-		{
-			if (i != 0)
-			{
-				dup2(pipes[i - 1][0], 0); 
-				close(pipes[i - 1][1]);
-			}
-			if (i != shell->n_cmds - 1)
-			{
-				dup2(pipes[i][1], 1); 
-				close(pipes[i][0]);
-			}
-		}
-		execute_cmd(cmd, shell);
+		dup_pipes_cmd(shell, i);
+		select_exec_cmd(cmd, shell);
 		exit(0);
 	}
 	waitpid(pid, NULL, 0);
-	if (shell->n_cmds != 1)
-	{
-		if (i != 0)
-			close(pipes[i - 1][0]);
-		if (i != shell->n_cmds - 1)
-			close(pipes[i][1]);
-	}
+	close_pipes_cmd(shell, i);
 }
 
 void	executor(t_shell *shell)
@@ -105,9 +69,4 @@ void	executor(t_shell *shell)
 		execute_child(shell->cmds[i], shell, i);
 		i++;
 	}
-	if (shell->n_cmds != 1)
-	{
-		close(shell->pipes[shell->n_cmds - 1][1]);
-	}
-	// close_pipes(shell->pipes, shell->n_cmds);
 }
