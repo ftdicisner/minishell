@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/01 17:39:09 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:42:29 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	close_pipes_cmd(shell, i);
 }
 
+// Test passed: "ls"
+// Test passed: "ls | grep a"
+// Test passed: "ls | grep a | grep out"
 void	executor(t_shell *shell)
 {
 	int i;
