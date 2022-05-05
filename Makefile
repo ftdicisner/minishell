@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/04/26 20:35:19 by jfrancis         ###   ########.fr        #
+#    Updated: 2022/05/01 17:41:13 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ PARSE = parser.c \
 	cmd_parser.c
 
 EXECUTOR = executor.c \
-	executables.c
+	executables.c \
+	pipes.c
 
 BUILTINS = echo.c \
 	cd.c \
@@ -94,5 +95,8 @@ re: fclean all
 
 install:
 	sudo apt-get install libreadline-dev
+
+valgrindtest:
+	valgrind --suppressions=readline.supp --track-fds=yes ./minishell 
 
 .PHONY: all clean fclean re install

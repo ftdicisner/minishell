@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 09:43:13 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/04/30 09:50:57 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_cmd	*create_cmd(char *cmd_str)
 	if (splitted_args != 0)
 	{
 		// to-do free the list used here
+		// printf("%s\n", cmd_str);
 		lst_to_cmd(splitted_args, cmd);
 		cmd->in_r = parse_redir(splitted_args, '<');
 		cmd->out_r = parse_redir(splitted_args, '>');

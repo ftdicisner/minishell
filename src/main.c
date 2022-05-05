@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 09:39:57 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:27:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	debug(t_shell *shell)
 	printf("VAR FOUND: %s, %s\n", var->key, var->value);
 }
 
-t_shell	*init(char** env)
+t_shell	*init_shell(char** env)
 {
 	t_shell *shell;
 
@@ -54,13 +54,14 @@ int	main(int argc, char **argv, char** env)
 	ft_putchar_fd('\n', 1);
 
 	// REPL -> Read Evaluate Print Loop
-	shell = init(env);
+	shell = init_shell(env);
 	while (s = readline("minishell~ "))
 	{
 		// printf("%s\n", s);
 		add_history(s);
 		rl_redisplay();
 		parse_line(s, shell);
+		init_pipes(shell);
 		executor(shell);
 	}
 	return (0);

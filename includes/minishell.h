@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 09:39:36 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:39:28 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_shell {
 	int		n_cmds;
 	char	**paths;
 	t_list	*env_vars;
+	int 	**pipes;
 }				t_shell;
 
 typedef struct	s_var
@@ -96,5 +97,10 @@ void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 // Debug
 void	debug_env_vars(t_list *head);
 void	debug_print_parsed_info(t_shell *shell);
+
+// Pipes
+void	init_pipes(t_shell *shell);
+void	dup_pipes_cmd(t_shell *shell, int i);
+void	close_pipes_cmd(t_shell *shell, int i);
 
 #endif
