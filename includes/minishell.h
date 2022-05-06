@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/01 17:39:28 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:15:31 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # include "../libs/libft/src/libft.h"
 
@@ -42,7 +43,7 @@ typedef struct s_cmd {
 	char	**args; // [cd, --help, -lh]
 	int		n_args; // 2
 	int		is_built; // boolean
-	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
+	t_list	*in_r; // each file in order that comes with the "<" or "<<" flag
 	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
 }				t_cmd;
 

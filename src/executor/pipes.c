@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/01 17:39:03 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/05 21:45:16 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,46 @@ void	init_pipes(t_shell *shell)
 	shell->pipes = pipes;
 }
 
+int fd;
+
 void	dup_pipes_cmd(t_shell *shell, int i)
 {
-	if (shell->n_cmds != 1)
+
+	printf("dup_pipe_cmd");
+	if (shell->n_cmds)
 	{
-		if (i != 0)
+		if (i != 0 || shell->cmds[i]->in_r)
 		{
-			dup2(shell->pipes[i - 1][0], 0); 
+			if (shell->cmds[i]->in_r)
+			{
+				fd = open(((t_redir *)(shell->cmds[i]->in_r->content))->file, O_RDONLY);
+				printf("abrio el archivo");
+			}
+			else
+				fd = shell->pipes[i - 1][0];
+			dup2(fd, 0);
 			close(shell->pipes[i - 1][1]);
+			close(fd);
 		}
 		if (i != shell->n_cmds - 1)
 		{
-			dup2(shell->pipes[i][1], 1); 
-			close(shell->pipes[i][0]);
+			printf("pasó al final");
+			// dup2(shell->pipes[i][1], 1);
+			// close(shell->pipes[i][0]);
 		}
 	}
 }
 
 void	close_pipes_cmd(t_shell *shell, int i)
 {
+
 	if (shell->n_cmds != 1)
 	{
 		if (i != 0)
+		{
 			close(shell->pipes[i - 1][0]);
+			close(fd);
+		}
 		if (i != shell->n_cmds - 1)
 			close(shell->pipes[i][1]);
 	}
