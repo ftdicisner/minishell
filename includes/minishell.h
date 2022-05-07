@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/01 17:39:28 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/07 10:18:14 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # include "../libs/libft/src/libft.h"
 
@@ -100,7 +101,9 @@ void	debug_print_parsed_info(t_shell *shell);
 
 // Pipes
 void	init_pipes(t_shell *shell);
-void	dup_pipes_cmd(t_shell *shell, int i);
+void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i);
 void	close_pipes_cmd(t_shell *shell, int i);
+void 	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i);
+
 
 #endif
