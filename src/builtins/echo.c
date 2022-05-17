@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/03/23 11:03:16 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/16 22:09:28 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	echo_output(int i, t_cmd *cmd)
 
 	arg_len = ft_strlen(cmd->args[i]);
 	j = 0;
-	if (i >= 1)
-		ft_putchar_fd(' ', 1);
-	while (j <= arg_len)
+	if (i > 1)
+		printf(" ");
+	while (j < arg_len)
 	{
 		if (cmd->args[i][j] != '\"' && cmd->args[i][j] != '\'')
-			ft_putchar_fd(cmd->args[i][j], 1);
+			printf("%c", cmd->args[i][j]);
 		j++;
 	}
 }
