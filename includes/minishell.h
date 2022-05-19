@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/07 10:18:14 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:09:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define NO_SUCH_FILE "No such file or directory."
 # define INVALID_INPUT "Invalid input."
 # define COMMAND_NOT_FOUND "Command not found."
+
+extern int cmd_status;
 
 typedef enum e_redir_mode {
 	SINGLE, // >
