@@ -1,0 +1,824 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed May 18 23:23:03 2022
+
+# Variables
+
+# makefile (from 'Makefile', line 53)
+UTILS = error.c utils.c utils2.c
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 57)
+SRC = $(BASE) $(PARSE) $(BUILTINS) $(ENV) $(UTILS)
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /home/paco/minishell
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+_ = /home/paco/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/node
+# makefile (from 'Makefile', line 19)
+EXECUTOR_DIR = executor
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# makefile (from 'Makefile', line 23)
+OBJ_DIR = build
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# makefile (from 'Makefile', line 63)
+SRC_FULL = $(addprefix $(SRC_DIR)/, $(BASE)) $(addprefix $(SRC_DIR)/$(PARSER_DIR)/, $(PARSE)) $(addprefix $(SRC_DIR)/$(BULTINS_DIR)/, $(BUILTINS)) $(addprefix $(SRC_DIR)/$(ENV_DIR)/, $(ENV)) $(addprefix $(SRC_DIR)/$(EXECUTOR_DIR)/, $(EXECUTOR)) $(addprefix $(SRC_DIR)/$(UTILS_DIR)/, $(UTILS))
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /mnt/c/Users/User/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/paco/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/bin/remote-cli:/home/paco/.local/bin:/home/paco/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Python38-32/python.exe:/mnt/c/Users/User/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:/home/paco/.dotnet/tools
+# makefile (from 'Makefile', line 29)
+BASE = main.c test_fork.c test_readline.c
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-ba83be9d-2884-4675-bf84-6f988ee60c83.sock
+# makefile (from 'Makefile', line 39)
+EXECUTOR = executor.c executables.c pipes.c pipes_out.c pipes_in.c
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 24)
+LIBFT_DIR = libs/libft
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/paco/minishell
+# default
+.LOADED := 
+# makefile (from 'Makefile', line 45)
+BUILTINS = echo.c cd.c pwd.c env.c exit.c export.c unset.c
+# environment
+WSL_INTEROP = /run/WSL/246_interop
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/paco
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+LOGNAME = paco
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# makefile (from 'Makefile', line 27)
+LIBFT = $(LIBFT_DIR)/libft.a
+# makefile (from 'Makefile', line 14)
+CC = gcc -g
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = paco
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from 'Makefile', line 13)
+NAME = minishell
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/User/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.3
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile (from 'Makefile', line 18)
+BULTINS_DIR = builtins
+# makefile (from 'Makefile', line 33)
+PARSE = parser.c path_parser.c env_parser.c redir_parser.c cmd_parser.c
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# makefile (from 'Makefile', line 20)
+ENV_DIR = env
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# makefile (from 'Makefile', line 17)
+PARSER_DIR = parser
+# makefile (from 'Makefile', line 21)
+UTILS_DIR = utils
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# default
+MAKEFILES := 
+# makefile (from 'Makefile', line 16)
+SRC_DIR = src
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 25)
+INCLUDES_DIR = includes
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# makefile (from 'Makefile', line 70)
+OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FULL))
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+WSL_DISTRO_NAME = Ubuntu-20.04
+# variable set hash-table stats:
+# Load=86/1024=8%, Rehash=0, Collisions=4/141=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2096, inode 43086): 18 files, no impossibilities.
+# src/executor (device 2096, inode 129848): 7 files, no impossibilities so far.
+# src/utils (device 2096, inode 129883): 3 files, no impossibilities so far.
+# src (device 2096, inode 129839): 9 files, no impossibilities so far.
+# src/parser (device 2096, inode 129854): 6 files, no impossibilities so far.
+# src/builtins (device 2096, inode 129840): 7 files, no impossibilities so far.
+
+# 50 files, no impossibilities in 6 directories.
+
+# Implicit Rules
+
+build/%.o: src/%.c
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+src/builtins/cd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/builtins/exit.o: src/builtins/exit.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/exit'
+#  Last modified 2022-05-18 23:11:21.724056979
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/executor/executor.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-14 12:55:47.28976487
+#  File has been updated.
+#  Successfully updated.
+
+build/main.o: src/main.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'main'
+#  Last modified 2022-05-18 23:11:21.174056975
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/utils/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/utils/utils2.o: src/utils/utils2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils/utils2'
+#  Last modified 2022-05-18 23:22:28.054062001
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/builtins/echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-18 21:46:02.314018393
+#  File has been updated.
+#  Successfully updated.
+
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/test_fork.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+.PHONY: all clean fclean re install
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/builtins/export.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/executor/pipes_out.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-18 23:20:58.824061329
+#  File has been updated.
+#  Successfully updated.
+
+build/builtins/unset.o: src/builtins/unset.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/unset'
+#  Last modified 2022-05-18 23:11:21.82405698
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/parser/redir_parser.o: src/parser/redir_parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser/redir_parser'
+#  Last modified 2022-05-18 23:11:21.454056977
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/parser/path_parser.o: src/parser/path_parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser/path_parser'
+#  Last modified 2022-05-18 23:11:21.364056976
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/parser/env_parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/utils/error.o: src/utils/error.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils/error'
+#  Last modified 2022-05-18 23:11:22.104056982
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-18 23:22:23.184061965
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/executor/pipes_in.c:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-05-18 23:18:48.724060348
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/executor/executables.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/test_readline.o: src/test_readline.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'test_readline'
+#  Last modified 2022-05-18 23:11:21.264056975
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/parser/parser.o: src/parser/parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser/parser'
+#  Last modified 2022-05-18 23:11:21.314056976
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/executor/pipes.o: src/executor/pipes.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'executor/pipes'
+#  Last modified 2022-05-18 23:19:15.044060546
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+minishell: build/main.o build/test_fork.o build/test_readline.o build/parser/parser.o build/parser/path_parser.o build/parser/env_parser.o build/parser/redir_parser.o build/parser/cmd_parser.o build/builtins/echo.o build/builtins/cd.o build/builtins/pwd.o build/builtins/env.o build/builtins/exit.o build/builtins/export.o build/builtins/unset.o build/executor/executor.o build/executor/executables.o build/executor/pipes.o build/executor/pipes_out.o build/executor/pipes_in.o build/utils/error.o build/utils/utils.o build/utils/utils2.o libs/libft/libft.a
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-18 23:22:28.164062002
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 75):
+	$(CC) -o $@ $^ -lreadline
+
+# Not a target:
+src/builtins/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/builtins/exit.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 93):
+	echo cleaning!
+	rm -rf $(NAME)
+	echo done!
+
+# Not a target:
+src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/parser/cmd_parser.o: src/parser/cmd_parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser/cmd_parser'
+#  Last modified 2022-05-18 23:11:21.504056977
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/utils/utils2.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-18 23:21:42.204061656
+#  File has been updated.
+#  Successfully updated.
+
+build/builtins/pwd.o: src/builtins/pwd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/pwd'
+#  Last modified 2022-05-18 23:11:21.634056978
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/builtins/cd.o: src/builtins/cd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/cd'
+#  Last modified 2022-05-18 23:11:21.594056978
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/executor/executor.o: src/executor/executor.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'executor/executor'
+#  Last modified 2022-05-18 23:11:21.87405698
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/builtins/unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+libs/libft/libft.a:
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+	make -C $(LIBFT_DIR)
+
+# Not a target:
+src/parser/redir_parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/utils/utils.o: src/utils/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'utils/utils'
+#  Last modified 2022-05-18 23:11:22.154056982
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/builtins/echo.o: src/builtins/echo.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/echo'
+#  Last modified 2022-05-18 23:11:21.554056978
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+src/parser/path_parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/test_fork.o: src/test_fork.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'test_fork'
+#  Last modified 2022-05-18 23:11:21.224056975
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/utils/error.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 90):
+	rm -rf $(OBJ_DIR)
+
+build/builtins/export.o: src/builtins/export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/export'
+#  Last modified 2022-05-18 23:11:21.774056979
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/executor/pipes_out.o: src/executor/pipes_out.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'executor/pipes_out'
+ 
+#  Last modified 2022-05-18 23:22:28.004062001
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+valgrindtest:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 103):
+	valgrind --suppressions=readline.supp --track-fds=yes ./minishell
+
+build/parser/env_parser.o: src/parser/env_parser.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'parser/env_parser'
+#  Last modified 2022-05-18 23:11:21.404056977
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/test_readline.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/parser/parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/executor/pipes.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-18 23:19:12.154060525
+#  File has been updated.
+#  Successfully updated.
+
+build/executor/pipes_in.o: src/executor/pipes_in.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'executor/pipes_in'
+#  Last modified 2022-05-18 23:19:15.104060547
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+build/executor/executables.o: src/executor/executables.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'executor/executables'
+#  Last modified 2022-05-18 23:11:21.91405698
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# Not a target:
+src/parser/cmd_parser.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+install:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 100):
+	sudo apt-get install libreadline-dev
+
+# Not a target:
+src/builtins/pwd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-05 20:37:51.163073044
+#  File has been updated.
+#  Successfully updated.
+
+build/builtins/env.o: src/builtins/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'builtins/env'
+#  Last modified 2022-05-18 23:11:21.684056979
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 81):
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/$(PARSER_DIR)
+	mkdir -p $(OBJ_DIR)/$(BULTINS_DIR)
+	mkdir -p $(OBJ_DIR)/$(EXECUTOR_DIR)
+	mkdir -p $(OBJ_DIR)/$(ENV_DIR)
+	mkdir -p $(OBJ_DIR)/$(UTILS_DIR)
+	$(CC) -I$(INCLUDES_DIR) -c $< -o $@
+
+# files hash-table stats:
+# Load=58/1024=6%, Rehash=0, Collisions=1/173=1%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 132 / storage = 1925 B / avg = 14 B
+# current buf: size = 8162 B / used = 1925 B / count = 132 / avg = 14 B
+
+# strcache performance: lookups = 186 / hit rate = 29%
+# hash-table stats:
+# Load=132/8192=2%, Rehash=0, Collisions=7/186=4%
+# Finished Make data base on Wed May 18 23:23:03 2022
+
+ 

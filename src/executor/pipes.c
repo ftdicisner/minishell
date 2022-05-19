@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/07 10:05:03 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:19:12 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,7 @@ void	init_pipes(t_shell *shell)
 void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i)
 {
 	if (shell->n_cmds != 1)
-	{
-		// Pipes of STDIN
-		if (i != 0)
-		{
-			dup2(shell->pipes[i - 1][0], 0); 
-			close(shell->pipes[i - 1][1]);
-		}
-	}
+		dup_pipes_in(shell, cmd, i);
 	dup_pipes_out(shell, cmd, i);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/07 10:18:14 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/18 23:22:13 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char	**lststr_to_arr(t_list *lst);
 void	print_error(char *cmd, char *error_msg);
 void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
+int		ft_open_file(t_redir *redir);
 
 // Debug
 void	debug_env_vars(t_list *head);
@@ -104,6 +105,7 @@ void	init_pipes(t_shell *shell);
 void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i);
 void	close_pipes_cmd(t_shell *shell, int i);
 void 	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i);
+void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i);
 
 
 #endif
