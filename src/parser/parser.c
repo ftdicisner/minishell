@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/30 09:50:57 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:47:59 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,12 @@ void	debug_print_parsed_info(t_shell *shell)
 {
 	int i = 0;
 
+	printf("######################## PARSER DEBUG: \n");
+
 	while (i < shell->n_cmds)
 	{
 		t_cmd *cmd = shell->cmds[i];
-		printf("CMD %d: %s ARGS: [", i, cmd->name);
+		printf("CMD[%d]: %s ARGS: [", i, cmd->name);
 		int j = 0;
 		while (j < cmd->n_args)
 		{
@@ -123,7 +125,11 @@ void	debug_print_parsed_info(t_shell *shell)
 		printf("]\n");
 		printf("OUT-FILES: [");
 		ft_lstiter(cmd->out_r, print_r_dir);
-		printf("]\n\n");
+		printf("]\n");
 		i++;
 	}
+
+	printf("PREVIOUS CMD STATUS: %d\n", cmd_status);
+
+	printf("######################## END DEBUG \n\n");
 }

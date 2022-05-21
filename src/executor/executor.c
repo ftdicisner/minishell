@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/07 10:01:32 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/21 09:46:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,28 @@ void	ft_read(int fd)
 	}
 }
 
-void	select_exec_cmd(t_cmd *cmd, t_shell *shell)
+int		select_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0)
-		builtin_echo(cmd, shell);
-	else if (ft_strcmp(cmd->name, "cd") == 0)
-		builtin_cd(cmd, shell);
-	else if (ft_strcmp(cmd->name, "pwd") == 0)
-		builtin_pwd(cmd, shell);
-	else if (ft_strcmp(cmd->name, "env") == 0)
-		builtin_env(cmd, shell);
-	else if (ft_strcmp(cmd->name, "export") == 0)
-		builtin_export(cmd, shell);
-	else if (ft_strcmp(cmd->name, "unset") == 0)
-		builtin_unset(cmd, shell);
-	else
-		default_exec(cmd, shell);
+		return (builtin_echo(cmd, shell));
+	if (ft_strcmp(cmd->name, "cd") == 0)
+		return (builtin_cd(cmd, shell));
+	if (ft_strcmp(cmd->name, "pwd") == 0)
+		return (builtin_pwd(cmd, shell));
+	if (ft_strcmp(cmd->name, "env") == 0)
+		return (builtin_env(cmd, shell));
+	if (ft_strcmp(cmd->name, "export") == 0)
+		return (builtin_export(cmd, shell));
+	if (ft_strcmp(cmd->name, "unset") == 0)
+		return (builtin_unset(cmd, shell));
+	return (default_exec(cmd, shell));
 }
 
 void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 {
 	int pid;
+	int	child_exit_status;
+	int status;
 
 	// Todo: Move the exit inside the execute_cmd	
 	if (ft_strcmp(cmd->name, "exit") == 0)
@@ -52,10 +53,15 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	if (pid == 0)
 	{
 		dup_pipes_cmd(shell, cmd, i);
-		select_exec_cmd(cmd, shell);
-		exit(0);
+		child_exit_status = select_exec_cmd(cmd, shell);
+		exit(child_exit_status);
 	}
-	waitpid(pid, NULL, 0);
+    if (waitpid(pid, &status, 0) == -1 ) {
+        cmd_status = EXIT_FAILURE;
+    }
+	if (WIFEXITED(status)) {
+        cmd_status = WEXITSTATUS(status);
+    }
 	close_pipes_cmd(shell, i);
 }
 

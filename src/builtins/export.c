@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/19 16:28:40 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:34:23 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_var	*find_var(t_list *head, char *key)
 // add without '=': export x g
 // add with multiples '=': export ringo=1=1234=sherlock
 // updated var: export a=9 // export a=15
-void	builtin_export(t_cmd *cmd, t_shell *shell)
+int		builtin_export(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 	char	*key;
@@ -96,4 +96,5 @@ void	builtin_export(t_cmd *cmd, t_shell *shell)
 		}
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }
