@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/21 15:42:13 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/21 18:04:18 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ EXECUTOR = executor.c \
 	executables.c \
 	pipes.c \
 	pipes_out.c \
-	signals.c
+	signals.c \
+	pipes_in.c
 
 BUILTINS = echo.c \
 	cd.c \
@@ -51,7 +52,8 @@ BUILTINS = echo.c \
 	unset.c
 
 UTILS = error.c \
-		utils.c
+		utils.c \
+		utils2.c
 
 SRC = $(BASE) \
 	$(PARSE) \
@@ -99,6 +101,6 @@ install:
 	sudo apt-get install libreadline-dev
 
 valgrindtest:
-	valgrind --suppressions=readline.supp --track-fds=yes ./minishell 
+	valgrind --suppressions=readline.supp --track-fds=yes ./minishell
 
 .PHONY: all clean fclean re install

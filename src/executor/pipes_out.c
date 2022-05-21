@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:59:22 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/07 11:59:02 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:32:33 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Create the file with the name passed as the function argument
  * node_content->file
  * @param node_content t_redir struct, contains the filename and type
- * @return void 
+ * @return void
  */
 void	t_redir_cb(void *node_content)
 {
@@ -40,22 +40,13 @@ t_redir	*create_files(t_list *out_r)
 	return (ft_lstlast(out_r)->content);
 }
 
-int		ft_open_file(t_redir *redir)
-{
-	if (redir->mode == DOUBLE)
-		return open(redir->file, O_APPEND
-				| O_WRONLY | O_CREAT, 0664);
-	return open(redir->file, O_TRUNC | O_WRONLY
-				| O_CREAT, 0664);
-}
-
 /**
  * 1 Check if there are redir-out files
  * 2 Create all files in the redir-out list
  * 3 Get the last file of the list, filename and type
  * 4 Open the file to write (Append or normal depending on the mode)
  * 5 Redir the STDOUT to the filename from the step 3
- * 
+ *
  */
 void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i)
 {
@@ -65,12 +56,12 @@ void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i)
 	if (cmd->out_r != NULL)
 	{
 		last = create_files(cmd->out_r);
-		fd = ft_open_file(last);
+		fd = ft_open_wronly_file(last);
 		dup2(fd, STDOUT_FILENO);
 	}
 	else if (shell->n_cmds != 1 && i != shell->n_cmds - 1)
 	{
-		dup2(shell->pipes[i][1], STDOUT_FILENO); 
+		dup2(shell->pipes[i][1], STDOUT_FILENO);
 		close(shell->pipes[i][0]);
 	}
 }
