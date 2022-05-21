@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/18 23:19:12 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:09:19 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ void	init_pipes(t_shell *shell)
 		assign_pipe(pipes[i]);
 		i++;
 	}
-	printf("Fueron creados %d pipes\n", n);
 	shell->pipes = pipes;
 }
 
 void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i)
 {
-	if (shell->n_cmds != 1)
+	// if (shell->n_cmds != 1)
 		dup_pipes_in(shell, cmd, i);
 	dup_pipes_out(shell, cmd, i);
 }

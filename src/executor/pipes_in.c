@@ -6,56 +6,76 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/18 23:26:34 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/21 19:50:19 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /**
- * @brief Create the file with the name passed as the function argument
- * node_content->file
+ * @brief Check if the filename passed is valid file.
  * @param node_content t_redir struct, contains the filename and type
  * @return void
  */
-static void	t_redir_is_file(void *node_content)
+static void t_redir_is_file(void *node_content)
 {
 	t_redir *content;
 
 	content = (t_redir *)(node_content);
 	if (access(content->file, F_OK) != 0)
+	{
 		print_error(content->file, NO_SUCH_FILE);
+		exit(EXIT_FAILURE);
+	}
 }
 
-/**
- * @brief Iterates through the linked list of t_redir elements
- * and checks if each one exists
- * @param in_r the linked list of t_redir elements
- * @return t_redir* returns the last node of the linked list
- */
-static t_redir *check_files(t_list *in_r)
+static void init_heredoc(t_cmd *cmd, char *tmp_eof)
 {
-	ft_lstiter(in_r, t_redir_is_file);
-	return (ft_lstlast(in_r)->content);
+	char *input;
+	int tmp_in_fd;
+	int tmp_out_fd;
+
+	input = readline("in_heredoc > ");
+	tmp_in_fd = open(TMP_FILE, O_TRUNC | O_RDWR | O_CREAT, 0664);
+
+	while (ft_strcmp(input, tmp_eof) != 0)
+	{
+		if (input)
+		{
+			write(tmp_in_fd, input, ft_strlen(input));
+			write(tmp_in_fd, "\n", 1);
+			input = readline("> ");
+		}
+		else
+		{
+			print_error(tmp_eof, "error in heredoc");
+			exit(EXIT_FAILURE);
+		}
+	}
+	free(input);
+	close(tmp_in_fd);
+
+	tmp_out_fd = open(TMP_FILE, O_RDONLY);
+	dup2(tmp_out_fd, STDIN_FILENO);
 }
-/**
- * 1 Check if there are redir-in files
- * 2 When reaching a redir of a file that doesn't exist, return error
- * 3 Get the last file of the list.
- * 4 Open the last file to read from it.
- * 5 Redir the STDIN from the filename from step 3
- *
- */
-void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i)
+
+void dup_pipes_in(t_shell *shell, t_cmd *cmd, int i)
 {
 	t_redir *last;
-	int		fd;
+	int fd;
 
 	if (cmd->in_r != NULL)
 	{
-		last = check_files(cmd->in_r);
-		fd = ft_open_file(last);
-		dup2(fd, STDIN_FILENO);
+		last = ft_lstlast(cmd->in_r)->content;
+
+		if (last->mode == DOUBLE)
+			init_heredoc(shell->cmds[0], last->file);
+		else
+		{
+			ft_lstiter(cmd->in_r, t_redir_is_file);
+			fd = ft_open_ronly_file(last);
+			dup2(fd, STDIN_FILENO);
+		}
 	}
 	else if (i != 0)
 	{

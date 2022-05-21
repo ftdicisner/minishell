@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:59:22 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/18 23:20:58 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:32:33 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i)
 	if (cmd->out_r != NULL)
 	{
 		last = create_files(cmd->out_r);
-		fd = ft_open_file(last);
+		fd = ft_open_wronly_file(last);
 		dup2(fd, STDOUT_FILENO);
 	}
 	else if (shell->n_cmds != 1 && i != shell->n_cmds - 1)

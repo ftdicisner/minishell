@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/18 23:22:13 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/21 19:22:40 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define NO_SUCH_FILE "No such file or directory."
 # define INVALID_INPUT "Invalid input."
 # define COMMAND_NOT_FOUND "Command not found."
+# define TMP_FILE "/tmp/heredoc_tmp"
 
 typedef enum e_redir_mode {
 	SINGLE, // >
@@ -94,7 +95,8 @@ char	**lststr_to_arr(t_list *lst);
 void	print_error(char *cmd, char *error_msg);
 void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
-int		ft_open_file(t_redir *redir);
+int		ft_open_wronly_file(t_redir *redir);
+int		ft_open_ronly_file(t_redir *redir);
 
 // Debug
 void	debug_env_vars(t_list *head);
