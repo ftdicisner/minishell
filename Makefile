@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
+#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/07 10:02:55 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/18 23:22:23 by jfrancis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ PARSE = parser.c \
 EXECUTOR = executor.c \
 	executables.c \
 	pipes.c \
-	pipes_out.c
+	pipes_out.c \
+	pipes_in.c
 
 BUILTINS = echo.c \
 	cd.c \
@@ -50,7 +51,8 @@ BUILTINS = echo.c \
 	unset.c
 
 UTILS = error.c \
-		utils.c
+		utils.c \
+		utils2.c
 
 SRC = $(BASE) \
 	$(PARSE) \
@@ -98,6 +100,6 @@ install:
 	sudo apt-get install libreadline-dev
 
 valgrindtest:
-	valgrind --suppressions=readline.supp --track-fds=yes ./minishell 
+	valgrind --suppressions=readline.supp --track-fds=yes ./minishell
 
 .PHONY: all clean fclean re install

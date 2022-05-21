@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 09:46:53 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:00:53 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	int	child_exit_status;
 	int status;
 
-	// Todo: Move the exit inside the execute_cmd	
+	// Todo: Move the exit inside the execute_cmd
 	if (ft_strcmp(cmd->name, "exit") == 0)
 		builtin_exit(cmd, shell);
 	pid = fork();
