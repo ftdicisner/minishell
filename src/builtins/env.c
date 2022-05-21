@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 09:33:10 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/17 09:57:26 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:32:41 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ void debug_env_vars(t_list *head)
 	ft_lstiter(head, print_var);
 }
 
-void	builtin_env(t_cmd *cmd, t_shell *shell)
+int		builtin_env(t_cmd *cmd, t_shell *shell)
 {
 	if (cmd->n_args > 1)
 	{
 		printf(TOO_MANY_ARGS);
+		return (EXIT_FAILURE);
 	}
 	else 
 	{
 		ft_lstiter(shell->env_vars, print_var);
+		return (EXIT_SUCCESS);
 	}
 }

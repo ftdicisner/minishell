@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/16 22:09:28 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:32:04 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	echo_output(int i, t_cmd *cmd)
 	echo string sem aspas
 	echo
 */
-void	builtin_echo(t_cmd *cmd, t_shell *shell)
+int		builtin_echo(t_cmd *cmd, t_shell *shell)
 {
 	char	*flag;
 	int		n_flag;
@@ -64,4 +64,5 @@ void	builtin_echo(t_cmd *cmd, t_shell *shell)
 	}
 	if (n_flag == 0)
 		printf("\n");
+	return (EXIT_SUCCESS);
 }
