@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/20 20:36:50 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/21 16:43:40 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 extern int cmd_status;
 
+typedef struct sigaction t_sigaction;
+
 typedef enum e_redir_mode {
 	SINGLE, // >
 	DOUBLE // >>
@@ -50,11 +52,12 @@ typedef struct s_cmd {
 }				t_cmd;
 
 typedef struct s_shell {
-	t_cmd	**cmds;
-	int		n_cmds;
-	char	**paths;
-	t_list	*env_vars;
-	int 	**pipes;
+	t_cmd		**cmds;
+	int			n_cmds;
+	char		**paths;
+	t_list		*env_vars;
+	int			**pipes;
+	t_sigaction *action;
 }				t_shell;
 
 typedef struct	s_var
@@ -107,5 +110,8 @@ void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i);
 void	close_pipes_cmd(t_shell *shell, int i);
 void 	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i);
 
+// Signals
+void	handle_sig(int sig);
+void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
 
 #endif
