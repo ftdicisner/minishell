@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 19:22:40 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:01:10 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define INVALID_INPUT "Invalid input."
 # define COMMAND_NOT_FOUND "Command not found."
 # define TMP_FILE "/tmp/heredoc_tmp"
+
+extern int cmd_status;
 
 typedef enum e_redir_mode {
 	SINGLE, // >
@@ -76,17 +78,17 @@ t_list	*parse_redir(char **args, char in_out);
 t_list	*parse_cmd(char **args);
 
 // builtins
-void	builtin_echo(t_cmd *cmd, t_shell *shell);
-void	builtin_env(t_cmd *cmd, t_shell *shell);
+int		builtin_echo(t_cmd *cmd, t_shell *shell);
+int		builtin_env(t_cmd *cmd, t_shell *shell);
 int		builtin_cd(t_cmd *cmd, t_shell *shell);
-void	builtin_pwd(t_cmd *cmd, t_shell *shell);
-void	builtin_export(t_cmd *cmd, t_shell *shell);
-void	builtin_unset(t_cmd *cmd, t_shell *shell);
-void	builtin_exit(t_cmd *cmd, t_shell *shell);
+int		builtin_pwd(t_cmd *cmd, t_shell *shell);
+int		builtin_export(t_cmd *cmd, t_shell *shell);
+int		builtin_unset(t_cmd *cmd, t_shell *shell);
+int		builtin_exit(t_cmd *cmd, t_shell *shell);
 
 // executor
 void	executor(t_shell *shell);
-void	default_exec(t_cmd *cmd, t_shell *shell);
+int		default_exec(t_cmd *cmd, t_shell *shell);
 
 // utils
 int		count_splitted(char **s_arr);

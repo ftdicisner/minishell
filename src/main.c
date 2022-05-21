@@ -6,11 +6,13 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 15:07:30 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:00:11 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int cmd_status;
 
 void	debug(t_shell *shell)
 {
@@ -36,11 +38,11 @@ t_shell	*init_shell(char** env)
 {
 	t_shell *shell;
 
-	shell = malloc(sizeof(shell));
+	shell = malloc(sizeof(t_shell));
 
-	// move env variables to a linked list which contents are key-value
 	shell->env_vars = init_env(env);
 	shell->paths = get_path_var(env);
+	cmd_status = 0;
 	// debug(shell);
 	return (shell);
 }
