@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:50:17 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/21 09:42:18 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:28:48 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	omit_redir(char **args, t_list *head, char in_out, int i)
 		j++;
 	if (j < 3)
 	{
-		if (args[i][j] == 0 && i + 1 < count_splitted(args))
+		if (args[i][j] == 0 && i + 1 < count_splitted_2d(args))
 			return (2);
 		else
 			return (1);
@@ -39,7 +39,7 @@ t_list	*parse_cmd(char **args)
 	char	first;
 	int		skips;
 
-	n_args = count_splitted(args);
+	n_args = count_splitted_2d(args);
 	head = NULL;
 	i = 0;
 	while (i < n_args)

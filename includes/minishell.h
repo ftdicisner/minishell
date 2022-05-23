@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 18:03:52 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 22:57:40 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ char	*concat_strs(char **input);
 char	**lst_env_to_strs(t_list *env);
 t_list	*parse_redir(char **args, char in_out);
 t_list	*parse_cmd(char **args);
+char	***generate_tokens(char *input, t_shell *shell);
+t_list	*input_to_tokens_lst(char *input, t_shell *shell);
+char 	*expand_token(char *token, t_list *env_vars);
 
 // builtins
 int		builtin_echo(t_cmd *cmd, t_shell *shell);
@@ -94,11 +97,11 @@ void	executor(t_shell *shell);
 int		default_exec(t_cmd *cmd, t_shell *shell);
 
 // utils
-int		count_splitted(char **s_arr);
+int		count_splitted_2d(char **s_arr);
+int		count_splitted_3d(char ***s_arr);
 int		ft_strcmp(char *s1, char *s2);
 char	**lststr_to_arr(t_list *lst);
 void	print_error(char *cmd, char *error_msg);
-void	parse_env_var(int i, t_cmd *cmd, t_shell *shell);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 int		ft_open_wronly_file(t_redir *redir);
 int		ft_open_ronly_file(t_redir *redir);
@@ -106,6 +109,7 @@ int		ft_open_ronly_file(t_redir *redir);
 // Debug
 void	debug_env_vars(t_list *head);
 void	debug_print_parsed_info(t_shell *shell);
+void	debug_quotes(char *input, t_shell *shell);
 
 // Pipes
 void	init_pipes(t_shell *shell);
