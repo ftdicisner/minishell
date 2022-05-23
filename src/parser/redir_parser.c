@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:13:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/04/15 18:26:10 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:29:05 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_redir	*find_redir(char **args, t_list *head, char in_out, int *i)
 			redir->mode = DOUBLE;
 		else
 			redir->mode = SINGLE;
-		if (args[*i][j] == 0 && *i + 1 < count_splitted(args))
+		if (args[*i][j] == 0 && *i + 1 < count_splitted_2d(args))
 		{
 			redir->file = ft_strdup(args[*i + 1]);
 			*i = *i + 1;
@@ -49,7 +49,7 @@ t_list	*parse_redir(char **args, char in_out)
 	t_list	*head;
 	t_redir	*new;
 
-	n_args = count_splitted(args);
+	n_args = count_splitted_2d(args);
 	head = NULL;
 	i = 0;
 	while (i < n_args)

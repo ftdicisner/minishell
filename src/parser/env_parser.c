@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 10:11:05 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 09:58:04 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 20:28:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list *init_env(char **env)
 	int n_vars;
 	t_var *var;
 
-	n_vars = count_splitted(env);
+	n_vars = count_splitted_2d(env);
 	if (n_vars > 0)
 	{
 		var = path_str_to_var(env[0]);

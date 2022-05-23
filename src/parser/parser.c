@@ -6,12 +6,14 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 09:47:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 21:58:27 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Move array of arguments to a t_list and them
+// generate the t_cmd information
 void	lst_to_cmd(char **args, t_cmd *cmd)
 {
 	t_list *lst;
@@ -33,35 +35,33 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 	}
 }
 
-t_cmd	*create_cmd(char *cmd_str)
+t_cmd	*create_cmd(char **cmd_str)
 {
 	t_cmd	*cmd;
 	int		i;
-	char	**splitted_args;
-	int		n_args;
 
 	i = 0;
 	cmd = malloc(sizeof(t_cmd));
-	splitted_args = ft_split(cmd_str, ' ');
-	if (splitted_args != 0)
+	if (cmd_str != 0)
 	{
 		// to-do free the list used here
 		// printf("%s\n", cmd_str);
-		lst_to_cmd(splitted_args, cmd);
-		cmd->in_r = parse_redir(splitted_args, '<');
-		cmd->out_r = parse_redir(splitted_args, '>');
+		lst_to_cmd(cmd_str, cmd);
+		cmd->in_r = parse_redir(cmd_str, '<');
+		cmd->out_r = parse_redir(cmd_str, '>');
 	}
 	return (cmd);
 }
 
-// ['cd diego paco', 'echo diego']
-void	split_cmd_args(char **s_by_pipes, t_shell *shell)
+// Receives ['cd diego paco', 'echo diego'] and sets the cmds
+// in the form cmd struct
+void	split_cmd_args(char ***s_by_pipes, t_shell *shell)
 {
 	t_cmd	**cmds;
 	int		n_commands;
 	int		i;
 
-	n_commands = count_splitted(s_by_pipes);
+	n_commands = count_splitted_3d(s_by_pipes);
 	cmds = malloc(sizeof(t_cmd *) * (n_commands));
 	i = 0;
 	while (i < n_commands)
@@ -82,14 +82,18 @@ void	split_cmd_args(char **s_by_pipes, t_shell *shell)
 // commands w many redirect in different positions: < tes < foo echo homer >> go
 void	parse_line(char *input, t_shell *shell)
 {
-	char 	**splitted_by_pipe;
+	char 	***splitted_by_pipe;
 
-	splitted_by_pipe = ft_split(input, '|');
+	splitted_by_pipe = generate_tokens(input, shell);
+	// splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
 	debug_print_parsed_info(shell);
 }
 
-//  DEBUG STUFF
+
+
+
+// Region debug
 
 void	print_r_dir(void *r_dir)
 {
@@ -133,3 +137,5 @@ void	debug_print_parsed_info(t_shell *shell)
 
 	printf("######################## END DEBUG \n\n");
 }
+
+// end Region debug

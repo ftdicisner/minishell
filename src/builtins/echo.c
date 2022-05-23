@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/20 20:32:04 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 22:01:24 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,7 @@ int		builtin_echo(t_cmd *cmd, t_shell *shell)
 			i++;
 		}
 		else
-		{
-			if (cmd->args[i][0] == '\"')
-				parse_env_var(i, cmd, shell);
-			else
-				echo_output(i, cmd);
-		}
+			echo_output(i, cmd);
 		i++;
 	}
 	if (n_flag == 0)

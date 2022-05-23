@@ -6,23 +6,11 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/03/22 09:08:06 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 22:02:46 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	count_splitted(char **s_arr)
-{
-	int	n;
-
-	n = 0;
-	while (s_arr[n] != 0)
-	{
-		n++;
-	}
-	return (n);
-}
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -54,13 +42,6 @@ char	**lststr_to_arr(t_list *lst)
 	}
 	output[i] = 0;
 	return (output);
-}
-void	parse_env_var(int i, t_cmd *cmd, t_shell *shell)
-{
-	if (cmd->args[i][ft_strlen(cmd->args[i]) - 1] != '\"')
-		print_error(cmd->name, INVALID_INPUT);
-	if (cmd->args[i][1] == '$')
-		print_env_var_val(i, cmd, shell);
 }
 
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell)

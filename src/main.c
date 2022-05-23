@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 18:03:48 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/22 22:00:17 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_shell	*init_shell(char** env)
 	return (shell);
 }
 
+
 int	main(int argc, char **argv, char** env)
 {
 	char *s;
@@ -66,6 +67,9 @@ int	main(int argc, char **argv, char** env)
 		add_history(s);
 		rl_redisplay();
 		parse_line(s, shell);
+
+		// debug_quotes(s, shell);
+
 		init_pipes(shell);
 		executor(shell);
 	}

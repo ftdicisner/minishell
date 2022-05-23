@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/21 18:04:18 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/22 22:55:19 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ PARSE = parser.c \
 	path_parser.c \
 	env_parser.c \
 	redir_parser.c \
-	cmd_parser.c
+	cmd_parser.c \
+	quotes_parser.c \
+	quotes_parser_2.c \
+	token_handler.c
 
 EXECUTOR = executor.c \
 	executables.c \
@@ -53,7 +56,8 @@ BUILTINS = echo.c \
 
 UTILS = error.c \
 		utils.c \
-		utils2.c
+		utils2.c \
+		utils_parser.c 
 
 SRC = $(BASE) \
 	$(PARSE) \
