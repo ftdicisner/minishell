@@ -6,7 +6,7 @@
 /*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 20:00:53 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:41:57 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		select_exec_cmd(t_cmd *cmd, t_shell *shell)
 		return (builtin_export(cmd, shell));
 	if (ft_strcmp(cmd->name, "unset") == 0)
 		return (builtin_unset(cmd, shell));
+	if (ft_strcmp(cmd->name, "exit") == 0)
+		builtin_exit(cmd, shell);
 	return (default_exec(cmd, shell));
 }
 
@@ -46,9 +48,6 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	int	child_exit_status;
 	int status;
 
-	// Todo: Move the exit inside the execute_cmd
-	if (ft_strcmp(cmd->name, "exit") == 0)
-		builtin_exit(cmd, shell);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -65,6 +64,18 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	close_pipes_cmd(shell, i);
 }
 
+static int	check_builtin(t_cmd *cmd)
+{
+	if (ft_strcmp(cmd->name, "cd") == 0)
+		return (1);
+	if (ft_strcmp(cmd->name, "export") == 0)
+		return (1);
+	if (ft_strcmp(cmd->name, "unset") == 0)
+		return (1);
+	if (ft_strcmp(cmd->name, "exit") == 0)
+		return (1);
+	return (0);
+}
 // Test passed: "ls"
 // Test passed: "ls | grep a"
 // Test passed: "ls | grep a | grep out"
@@ -73,9 +84,14 @@ void	executor(t_shell *shell)
 	int i;
 
 	i = 0;
-	while (i < shell->n_cmds)
+	if (shell->n_cmds == 1 && check_builtin(shell->cmds[i]) == 1)
+		select_exec_cmd(shell->cmds[i], shell);
+	else
 	{
-		execute_child(shell->cmds[i], shell, i);
-		i++;
+		while (i < shell->n_cmds)
+		{
+			execute_child(shell->cmds[i], shell, i);
+			i++;
+		}
 	}
 }
