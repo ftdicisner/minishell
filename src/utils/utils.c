@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 22:02:46 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:35:46 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strcmp(char *s1, char *s2)
 	int	s1_len;
 	int	s2_len;
 
+	if (s1 == NULL || s2 == NULL)
+		return (1);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	if (s1_len != s2_len)
