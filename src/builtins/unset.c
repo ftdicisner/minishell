@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/20 20:35:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:20:45 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	del_var(void *content)
 {
-	t_var	*var;
-
-	var = (t_var *)content;
 	free(content);
 }
 
@@ -40,7 +37,7 @@ t_list	*unset_var(t_list *head, char *key)
 	t_list	*tmp;
 	t_list	*prev;
 	t_var	*var;
-	int		key_len;
+	size_t	key_len;
 
 	tmp = head;
 	prev = NULL;

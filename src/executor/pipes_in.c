@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/21 19:50:19 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:21:07 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void t_redir_is_file(void *node_content)
 	}
 }
 
-static void init_heredoc(t_cmd *cmd, char *tmp_eof)
+static void init_heredoc(char *tmp_eof)
 {
 	char *input;
 	int tmp_in_fd;
@@ -69,7 +69,7 @@ void dup_pipes_in(t_shell *shell, t_cmd *cmd, int i)
 		last = ft_lstlast(cmd->in_r)->content;
 
 		if (last->mode == DOUBLE)
-			init_heredoc(shell->cmds[0], last->file);
+			init_heredoc(last->file);
 		else
 		{
 			ft_lstiter(cmd->in_r, t_redir_is_file);

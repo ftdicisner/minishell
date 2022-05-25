@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/20 20:34:23 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:20:14 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list *find_node_var(t_list *head, char *key)
 {
 	t_list	*tmp;
 	t_var	*var;
-	int		key_len;
+	size_t	key_len;
 
 	tmp = head;
 	key_len = ft_strlen(key);
@@ -58,7 +58,6 @@ t_list	*export_var(t_list *head, char *key, char *value)
 t_var	*find_var(t_list *head, char *key)
 {
 	t_list	*new;
-	t_var	*var;
 
 	if (ft_strlen(key) == 1 && key[0] == '?')
 		export_var(head, "?", ft_itoa(cmd_status));

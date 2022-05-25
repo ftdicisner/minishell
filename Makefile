@@ -6,12 +6,12 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/22 22:55:19 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/25 00:42:34 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC = gcc -g
+CC = gcc -g -Wall -Wextra -Werror -fsanitize=address
 
 SRC_DIR = src
 PARSER_DIR = parser
@@ -57,7 +57,9 @@ BUILTINS = echo.c \
 UTILS = error.c \
 		utils.c \
 		utils2.c \
-		utils_parser.c 
+		utils_parser.c \
+		clean_cmd.c \
+		clean_parser.c
 
 SRC = $(BASE) \
 	$(PARSE) \
@@ -106,5 +108,8 @@ install:
 
 valgrindtest:
 	valgrind --suppressions=readline.supp --track-fds=yes ./minishell
+
+valgrindleaks:
+	valgrind --suppressions=readline.supp --leak-check=full ./minishell
 
 .PHONY: all clean fclean re install

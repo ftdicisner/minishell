@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 10:08:41 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/23 23:35:46 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:44:03 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**lststr_to_arr(t_list *lst)
 	char	**output;
 
 	size = ft_lstsize(lst);
-	output = malloc((sizeof(char *) * size) + 1);
+	output = malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	while (i < size)
 	{

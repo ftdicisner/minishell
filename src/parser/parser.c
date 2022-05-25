@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 21:58:27 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 00:44:56 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 {
 	t_list *lst;
 	int		size;
-	int		i;
 
 	lst = parse_cmd(args);
 	size = ft_lstsize(lst);
@@ -38,9 +37,7 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 t_cmd	*create_cmd(char **cmd_str)
 {
 	t_cmd	*cmd;
-	int		i;
 
-	i = 0;
 	cmd = malloc(sizeof(t_cmd));
 	if (cmd_str != 0)
 	{
@@ -88,9 +85,8 @@ void	parse_line(char *input, t_shell *shell)
 	// splitted_by_pipe = ft_split(input, '|');
 	split_cmd_args(splitted_by_pipe, shell);
 	debug_print_parsed_info(shell);
+	free_tokens_arr(splitted_by_pipe);
 }
-
-
 
 
 // Region debug

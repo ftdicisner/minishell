@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   clean_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 13:22:59 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/24 22:19:35 by dicisner         ###   ########.fr       */
+/*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
+/*   Updated: 2022/05/24 20:27:54 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		builtin_pwd(t_shell *shell)
+// free each string and each array
+// of an array of an array of strings
+int		free_tokens_arr(char ***tokens)
 {
-	t_var	*pwd;
+	int i;
+	int j;
 
-	pwd = find_var(shell->env_vars, "PWD");
-	if (pwd)
-		printf("%s\n", pwd->value);
+	i = 0;
+	while(tokens[i])
+	{
+		j = 0;
+		while(tokens[i][j])
+		{
+			free(tokens[i][j]);
+			j++;
+		}
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
 	return (EXIT_SUCCESS);
 }

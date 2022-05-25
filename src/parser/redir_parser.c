@@ -6,20 +6,18 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:13:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 20:29:05 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:17:12 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redir	*find_redir(char **args, t_list *head, char in_out, int *i)
+t_redir	*find_redir(char **args, char in_out, int *i)
 {
 	t_redir	*redir;
-	int		arg_len;
 	int		j;
 
 	redir = malloc(sizeof(t_redir));
-	arg_len = ft_strlen(args[*i]);
 	j = 0;
 	while (args[*i][j] == in_out) 
 		j++;
@@ -56,7 +54,7 @@ t_list	*parse_redir(char **args, char in_out)
 	{
 		if (args[i][0] == in_out)
 		{
-			new = find_redir(args, head, in_out, &i);
+			new = find_redir(args, in_out, &i);
 			if (new != NULL)
 				ft_lstadd_back(&head, ft_lstnew(new));
 		}

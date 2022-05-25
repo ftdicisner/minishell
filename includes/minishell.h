@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 22:57:40 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:19:44 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ t_list	*input_to_tokens_lst(char *input, t_shell *shell);
 char 	*expand_token(char *token, t_list *env_vars);
 
 // builtins
-int		builtin_echo(t_cmd *cmd, t_shell *shell);
+int		builtin_echo(t_cmd *cmd);
 int		builtin_env(t_cmd *cmd, t_shell *shell);
 int		builtin_cd(t_cmd *cmd, t_shell *shell);
-int		builtin_pwd(t_cmd *cmd, t_shell *shell);
+int		builtin_pwd(t_shell *shell);
 int		builtin_export(t_cmd *cmd, t_shell *shell);
 int		builtin_unset(t_cmd *cmd, t_shell *shell);
 int		builtin_exit(t_cmd *cmd, t_shell *shell);
@@ -121,5 +121,9 @@ void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i);
 // Signals
 void	handle_sig(int sig);
 void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
+
+// Cleaner
+int		free_shell(t_shell *shell);
+int		free_tokens_arr(char ***tokens);
 
 #endif
