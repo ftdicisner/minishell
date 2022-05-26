@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_out.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:59:22 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/19 20:32:33 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:21:17 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 void	t_redir_cb(void *node_content)
 {
-	t_redir *content;
+	t_redir	*content;
 	int		fd;
 
 	content = (t_redir *)(node_content);
@@ -50,7 +50,7 @@ t_redir	*create_files(t_list *out_r)
  */
 void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i)
 {
-	t_redir *last;
+	t_redir	*last;
 	int		fd;
 
 	if (cmd->out_r != NULL)

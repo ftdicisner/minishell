@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/25 21:26:54 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/26 13:37:10 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,7 @@ INCLUDES_DIR = includes
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-BASE = main.c \
-	test_fork.c \
-	test_readline.c
+BASE = main.c
 
 PARSE = parser.c \
 	path_parser.c \

@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 12:29:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 15:42:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:33:38 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		count_pipes(t_list *tokens)
+int	count_pipes(t_list *tokens)
 {
 	int		count;
 	t_list	*tmp;
@@ -21,14 +21,14 @@ int		count_pipes(t_list *tokens)
 	tmp = tokens;
 	while (tmp)
 	{
-		if (ft_strcmp((char*)tmp->content, "|") == 0)
+		if (ft_strcmp((char *)tmp->content, "|") == 0)
 			count++;
 		tmp = tmp->next;
 	}
 	return (count);
 }
 
-int		count_tokens_b4_pipes(t_list *tokens)
+int	count_tokens_b4_pipes(t_list *tokens)
 {
 	int		count;
 	t_list	*tmp;
@@ -37,7 +37,7 @@ int		count_tokens_b4_pipes(t_list *tokens)
 	tmp = tokens;
 	while (tmp)
 	{
-		if (ft_strcmp((char*)tmp->content, "|") != 0)
+		if (ft_strcmp((char *)tmp->content, "|") != 0)
 			count++;
 		else
 			return (count);
@@ -48,8 +48,8 @@ int		count_tokens_b4_pipes(t_list *tokens)
 
 void	split_tokens_aux(char ***by_pipes, int i, t_list **lst)
 {
-	int j;
-	int n_tokens;
+	int	j;
+	int	n_tokens;
 
 	n_tokens = count_tokens_b4_pipes(*lst);
 	by_pipes[i] = malloc(sizeof(char *) * (n_tokens + 1));
@@ -97,47 +97,4 @@ char	***generate_tokens(char *input, t_shell *shell)
 	tokens_by_pipes = split_tokens_by_pipes(tokens);
 	ft_lstclear(&tokens, free);
 	return (tokens_by_pipes);
-}
-
-// Region debug
-
-
-// print the strings content of each t_list
-void	print_list(t_list *list)
-{
-	t_list *tmp;
-
-	tmp = list;
-	while (tmp)
-	{
-		printf("%s\n", (char*)tmp->content);
-		tmp = tmp->next;
-	}
-}
-
-void	debug_quotes(char *input, t_shell *shell)
-{
-	t_list *tokens = input_to_tokens_lst(input, shell);
-
-	// print_list(tokens);
-
-	char	***tokens_by_pipes = split_tokens_by_pipes(tokens);
-	char	*token;
-
-	int i = 0;
-	while (tokens_by_pipes[i] != 0)
-	{
-		int j = 0;
-		while (tokens_by_pipes[i][j] != 0)
-		{
-			token = tokens_by_pipes[i][j];
-			token = expand_token(token, shell->env_vars);
-			printf("%s-", token);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-
-	printf("\n");
 }

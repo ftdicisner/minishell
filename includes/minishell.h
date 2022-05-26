@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 21:25:38 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:52:06 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define COMMAND_NOT_FOUND "Command not found."
 # define TMP_FILE "/tmp/heredoc_tmp"
 
-extern int cmd_status;
+extern int g_cmd_status;
 
 typedef struct sigaction t_sigaction;
 
