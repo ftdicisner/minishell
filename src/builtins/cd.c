@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:55:08 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 12:56:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:44:18 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int	builtin_cd(t_cmd *cmd, t_shell *shell)
 		return (EXIT_FAILURE);
 	}
 	if (i == 0)
-		export_var(shell->env_vars, "PWD", getcwd(buffer, 0));
+		export_var(shell->env_vars, ft_strdup("PWD"), getcwd(buffer, 0));
 	return (EXIT_SUCCESS);
 }

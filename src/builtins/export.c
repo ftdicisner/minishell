@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:00:35 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:44:45 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_var	*find_var(t_list *head, char *key)
 	t_list	*new;
 
 	if (ft_strlen(key) == 1 && key[0] == '?')
-		export_var(head, "?", ft_itoa(g_cmd_status));
+		export_var(head, ft_strdup("?"), ft_itoa(g_cmd_status));
 	new = find_node_var(head, key);
 	if (new != NULL)
 		return ((t_var *)(new->content));
