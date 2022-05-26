@@ -6,18 +6,18 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 15:22:08 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:44:45 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // Returns the node with the given key
-t_list *find_node_var(t_list *head, char *key)
+t_list	*find_node_var(t_list *head, char *key)
 {
-	t_list *tmp;
-	t_var *var;
-	size_t key_len;
+	t_list	*tmp;
+	t_var	*var;
+	size_t	key_len;
 
 	tmp = head;
 	key_len = ft_strlen(key);
@@ -32,10 +32,10 @@ t_list *find_node_var(t_list *head, char *key)
 	return (NULL);
 }
 
-t_list *export_var(t_list *head, char *key, char *value)
+t_list	*export_var(t_list *head, char *key, char *value)
 {
-	t_list *new;
-	t_var *var;
+	t_list	*new;
+	t_var	*var;
 
 	new = find_node_var(head, key);
 	if (new != NULL)
@@ -57,15 +57,15 @@ t_list *export_var(t_list *head, char *key, char *value)
 }
 
 // Returns the node content (t_var) with the given key
-t_var *find_var(t_list *head, char *key)
+t_var	*find_var(t_list *head, char *key)
 {
-	t_list *new;
+	t_list	*new;
 
 	if (ft_strlen(key) == 1 && key[0] == '?')
-		export_var(head, ft_strdup("?"), ft_itoa(cmd_status));
+		export_var(head, ft_strdup("?"), ft_itoa(g_cmd_status));
 	new = find_node_var(head, key);
 	if (new != NULL)
-		return (t_var *)(new->content);
+		return ((t_var *)(new->content));
 	return (NULL);
 }
 
@@ -76,12 +76,12 @@ t_var *find_var(t_list *head, char *key)
 // add without '=': export x g
 // add with multiples '=': export ringo=1=1234=sherlock
 // updated var: export a=9 // export a=15
-int builtin_export(t_cmd *cmd, t_shell *shell)
+int	builtin_export(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 	char	*key;
-	char 	*value;
-	char 	**splitted;
+	char	*value;
+	char	**splitted;
 
 	i = 1;
 	while (i < cmd->n_args)

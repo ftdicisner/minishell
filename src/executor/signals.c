@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:46 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 16:04:05 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:52:06 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	handle_sig(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-		cmd_status = 130;
+		g_cmd_status = 130;
 	}
 }
 

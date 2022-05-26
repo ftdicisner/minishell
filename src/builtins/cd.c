@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 12:55:08 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 15:19:16 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:44:18 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int ft_chdir(char *path, t_list *lst)
+static int	ft_chdir(char *path, t_list *lst)
 {
 	if (ft_strcmp(path, "~") == 0)
 		return (chdir(find_var(lst, "HOME")->value));

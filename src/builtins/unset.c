@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 20:52:02 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:01:12 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	del_var(void *content)
 {
-	t_var *var;
-	
+	t_var	*var;
+
 	var = (t_var *)content;
 	free(var->key);
 	free(var->value);
@@ -63,7 +63,7 @@ t_list	*unset_var(t_list *head, char *key)
 // unset one var: unset x
 // unset multiple vars: unset x a y z
 // unset non-existence var: unset this_var_doesnt_exist
-int		builtin_unset(t_cmd *cmd, t_shell *shell)
+int	builtin_unset(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 

@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 20:39:46 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/20 20:33:26 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:58:38 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void destroy_shell(t_shell *shell)
+static void	destroy_shell(t_shell *shell)
 {
 	free(shell);
 }

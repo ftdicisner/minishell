@@ -6,24 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 15:24:34 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:44:58 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_read(int fd)
-{
-	int bsize = 256;
-	char buf[bsize+1];
-	ssize_t n = 0;
-	while ((n = read(fd, buf, bsize)) > 0) {
-		buf[n] = '\0';
-		write(1, buf, n);
-	}
-}
-
-int		select_exec_cmd(t_cmd *cmd, t_shell *shell)
+int	select_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0)
 		return (builtin_echo(cmd));
@@ -44,9 +33,9 @@ int		select_exec_cmd(t_cmd *cmd, t_shell *shell)
 
 void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 {
-	int pid;
+	int	pid;
 	int	child_exit_status;
-	int status;
+	int	status;
 
 	pid = fork();
 	if (pid == 0)
@@ -55,12 +44,10 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 		child_exit_status = select_exec_cmd(cmd, shell);
 		exit(child_exit_status);
 	}
-    if (waitpid(pid, &status, 0) == -1 ) {
-        cmd_status = EXIT_FAILURE;
-    }
-	if (WIFEXITED(status)) {
-        cmd_status = WEXITSTATUS(status);
-    }
+	if (waitpid(pid, &status, 0) == -1)
+		g_cmd_status = EXIT_FAILURE;
+	if (WIFEXITED(status))
+	g_cmd_status = WEXITSTATUS(status);
 	close_pipes_cmd(shell, i);
 }
 
@@ -76,16 +63,17 @@ static int	check_builtin(t_cmd *cmd)
 		return (1);
 	return (0);
 }
+
 // Test passed: "ls"
 // Test passed: "ls | grep a"
 // Test passed: "ls | grep a | grep out"
 void	executor(t_shell *shell)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (shell->n_cmds == 1 && check_builtin(shell->cmds[i]) == 1)
-		cmd_status = select_exec_cmd(shell->cmds[i], shell);
+		g_cmd_status = select_exec_cmd(shell->cmds[i], shell);
 	else
 	{
 		while (i < shell->n_cmds)

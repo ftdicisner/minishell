@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:50:17 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 22:17:34 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:26:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	omit_redir(char **args, char in_out, int i)
 {
-	int		j;
+	int	j;
 
 	j = 0;
-	while (args[i][j] == in_out) 
+	while (args[i][j] == in_out)
 		j++;
 	if (j < 3)
 	{

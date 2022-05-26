@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
+#    By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/25 21:26:54 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/26 17:18:04 by jfrancis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,7 @@ INCLUDES_DIR = includes
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-BASE = main.c \
-	test_fork.c \
-	test_readline.c
+BASE = main.c
 
 PARSE = parser.c \
 	path_parser.c \

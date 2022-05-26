@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:55:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 18:21:51 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:34:13 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*token_end_pos(char *str, int start_pos)
 	{
 		while (str[i] != '\0' && str[i] != start_char)
 			i++;
-		if (str[i] != '\0') 
+		if (str[i] != '\0')
 			return (str + i + 1);
 		else
 			return (NULL);
@@ -49,7 +49,7 @@ char	*token_end_pos(char *str, int start_pos)
 // Return a pointer to the start of a string token
 char	*token_start_pos(char *str)
 {
-	char *next;
+	char	*next;
 
 	next = next_pointer_no_blank(str);
 	return (next);
@@ -57,8 +57,8 @@ char	*token_start_pos(char *str)
 
 char	*get_token(char *start, char *end, t_shell *shell)
 {
-	char *token;
-	char *tmp;
+	char	*token;
+	char	*tmp;
 
 	if (*start == '\'')
 		token = ft_substr(start + 1, 0, end - start - 2);
