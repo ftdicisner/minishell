@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 12:52:06 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:38:01 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,28 @@
 # define COMMAND_NOT_FOUND "Command not found."
 # define TMP_FILE "/tmp/heredoc_tmp"
 
-extern int g_cmd_status;
+extern int		g_cmd_status;
 
-typedef struct sigaction t_sigaction;
+typedef struct sigaction	t_sigaction;
 
+/* < or << */
 typedef enum e_redir_mode {
-	SINGLE, // >
-	DOUBLE // >>
-}			t_redir_mode;
+	SINGLE,
+	DOUBLE
+}		t_redir_mode;
 
 typedef struct s_redir {
-	char		*file;
-	t_redir_mode mode;
+	char			*file;
+	t_redir_mode	mode;
 }				t_redir;
 
 typedef struct s_cmd {
-	char	*name; // cd , echo, ls
-	char	**args; // [cd, --help, -lh]
-	int		n_args; // 2
-	int		is_built; // boolean
-	t_list	*in_r; // each file in order that comes with the "<" or "<" flag
-	t_list	*out_r; // each file in order that comes with the ">" or ">>" flag
+	char	*name;
+	char	**args;
+	int		n_args;
+	int		is_built;
+	t_list	*in_r;
+	t_list	*out_r;
 }				t_cmd;
 
 typedef struct s_shell {
@@ -58,18 +59,18 @@ typedef struct s_shell {
 	char		**paths;
 	t_list		*env_vars;
 	int			**pipes;
-	t_sigaction *action;
+	t_sigaction	*action;
 }				t_shell;
 
-typedef struct	s_var
+typedef struct s_var
 {
-	char *key;
-	char *value;
+	char	*key;
+	char	*value;
 }				t_var;
 
 // parser
 void	parse_line(char *input, t_shell *shell);
-char    **get_path_var(char **envp);
+char	**get_path_var(char **envp);
 t_list	*init_env(char **env);
 t_list	*export_var(t_list *head, char *key, char *value);
 t_list	*unset_var(t_list *head, char *key);
@@ -81,7 +82,7 @@ t_list	*parse_redir(char **args, char in_out);
 t_list	*parse_cmd(char **args);
 char	***generate_tokens(char *input, t_shell *shell);
 t_list	*input_to_tokens_lst(char *input, t_shell *shell);
-char 	*expand_token(char *token, t_list *env_vars);
+char	*expand_token(char *token, t_list *env_vars);
 
 // builtins
 int		builtin_echo(t_cmd *cmd);
@@ -116,7 +117,7 @@ void	debug_quotes(char *input, t_shell *shell);
 void	init_pipes(t_shell *shell);
 void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i);
 void	close_pipes_cmd(t_shell *shell, int i);
-void 	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i);
+void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i);
 void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i);
 
 // Signals
