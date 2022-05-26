@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:26:24 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 21:24:07 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 16:55:49 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])

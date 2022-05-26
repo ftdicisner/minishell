@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:35:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 15:50:54 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:35:57 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*end_position_env(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[0] == '$')
@@ -28,7 +28,7 @@ char	*end_position_env(char *str)
 
 char	*get_substr_env(char *str, t_list *env_vars)
 {
-	char 	*token;
+	char	*token;
 	char	*end;
 	t_var	*var;
 
@@ -49,10 +49,10 @@ char	*get_substr_env(char *str, t_list *env_vars)
 
 // Receives an string and separates it into
 // string by spaces and $
-t_list *split_by_env(char *str, t_list *env_vars)
+t_list	*split_by_env(char *str, t_list *env_vars)
 {
 	t_list	*list;
-	int 	i;
+	int		i;
 	char	*token;
 
 	list = NULL;
@@ -69,9 +69,9 @@ t_list *split_by_env(char *str, t_list *env_vars)
 // Check if there are env vars in the token
 // and return a new string with the env vars
 // values replaced
-char *expand_token(char *token, t_list *env_vars)
+char	*expand_token(char *token, t_list *env_vars)
 {
-	char 	*str;
+	char	*str;
 	char	*tmp;
 	t_list	*tmp_list;
 	t_list	*list;
@@ -88,7 +88,8 @@ char *expand_token(char *token, t_list *env_vars)
 	while (tmp_list->next)
 	{
 		tmp = str;
-		str = ft_strjoin((char *)tmp_list->content, (char *)tmp_list->next->content);
+		str = ft_strjoin((char *)tmp_list->content,
+				(char *)tmp_list->next->content);
 		free(tmp);
 		tmp_list = tmp_list->next;
 	}

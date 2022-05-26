@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 15:38:55 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:32:45 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // generate the t_cmd information
 void	lst_to_cmd(char **args, t_cmd *cmd)
 {
-	t_list *lst;
+	t_list	*lst;
 	int		size;
 
 	lst = parse_cmd(args);
@@ -27,7 +27,8 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 		cmd->n_args = size;
 		cmd->args = lststr_to_arr(lst);
 	}
-	else {
+	else
+	{
 		cmd->name = 0;
 		cmd->n_args = 0;
 		cmd->args = 0;
@@ -42,8 +43,6 @@ t_cmd	*create_cmd(char **cmd_str)
 	cmd = malloc(sizeof(t_cmd));
 	if (cmd_str != 0)
 	{
-		// to-do free the list used here
-		// printf("%s\n", cmd_str);
 		lst_to_cmd(cmd_str, cmd);
 		cmd->in_r = parse_redir(cmd_str, '<');
 		cmd->out_r = parse_redir(cmd_str, '>');
@@ -80,58 +79,9 @@ void	split_cmd_args(char ***s_by_pipes, t_shell *shell)
 // commands w many redirect in different positions: < tes < foo echo homer >> go
 void	parse_line(char *input, t_shell *shell)
 {
-	char 	***splitted_by_pipe;
+	char	***splitted_by_pipe;
 
 	splitted_by_pipe = generate_tokens(input, shell);
 	split_cmd_args(splitted_by_pipe, shell);
-	debug_print_parsed_info(shell);
 	free_tokens_arr(splitted_by_pipe);
 }
-
-
-// Region debug
-
-void	print_r_dir(void *r_dir)
-{
-	t_redir *new;
-
-	new = (t_redir *)r_dir;
-	printf("[file: %s type: %d],", new->file, new->mode);
-}
-
-void	debug_print_parsed_info(t_shell *shell)
-{
-	int i = 0;
-
-	printf("######################## PARSER DEBUG: \n");
-
-	while (i < shell->n_cmds)
-	{
-		t_cmd *cmd = shell->cmds[i];
-		printf("CMD[%d]: %s ARGS: [", i, cmd->name);
-		int j = 0;
-		while (j < cmd->n_args)
-		{
-			printf("%s",cmd->args[j]);
-			if (j != cmd->n_args - 1) {
-				printf(",");
-			}
-			j++;
-		}
-		printf("]\n");
-		j = 0;
-		printf("IN-FILES: [");
-		ft_lstiter(cmd->in_r, print_r_dir);
-		printf("]\n");
-		printf("OUT-FILES: [");
-		ft_lstiter(cmd->out_r, print_r_dir);
-		printf("]\n");
-		i++;
-	}
-
-	printf("PREVIOUS CMD STATUS: %d\n", cmd_status);
-
-	printf("######################## END DEBUG \n\n");
-}
-
-// end Region debug

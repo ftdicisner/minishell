@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/24 22:19:11 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:57:02 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	echo_output(int i, t_cmd *cmd)
 	echo string sem aspas
 	echo
 */
-int		builtin_echo(t_cmd *cmd)
+int	builtin_echo(t_cmd *cmd)
 {
 	char	*flag;
 	int		n_flag;

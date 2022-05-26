@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 10:11:05 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 18:28:04 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:32:29 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_var *path_str_to_var(char *input)
+t_var	*path_str_to_var(char *input)
 {
 	t_var	*key_val;
 	char	**splitted;
@@ -27,12 +27,12 @@ t_var *path_str_to_var(char *input)
 	return (key_val);
 }
 
-t_list *init_env(char **env)
+t_list	*init_env(char **env)
 {
-	int i;
-	t_list *head;
-	int n_vars;
-	t_var *var;
+	int		i;
+	t_list	*head;
+	int		n_vars;
+	t_var	*var;
 
 	n_vars = count_splitted_2d(env);
 	if (n_vars > 0)
@@ -59,7 +59,7 @@ char	**lst_env_to_strs(t_list *env)
 	char	*tmp;
 
 	size = ft_lstsize(env);
-	output = ft_calloc(size + 1, sizeof(char*));
+	output = ft_calloc(size + 1, sizeof (char *));
 	i = 0;
 	while (i < size)
 	{
@@ -68,7 +68,7 @@ char	**lst_env_to_strs(t_list *env)
 		free(prefix);
 		output[i] = tmp;
 		env = env->next;
-		i++;	
+		i++;
 	}
 	return (output);
 }

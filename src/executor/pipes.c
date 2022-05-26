@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 23:13:44 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:06:01 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int assign_pipe(int *fd)
+int	assign_pipe(int *fd)
 {
 	if (pipe(fd) == -1)
 		print_error("exit", "Error while creating the pipe");
@@ -49,8 +49,7 @@ void	init_pipes(t_shell *shell)
 
 void	dup_pipes_cmd(t_shell *shell, t_cmd *cmd, int i)
 {
-	// if (shell->n_cmds != 1)
-		dup_pipes_in(shell, cmd, i);
+	dup_pipes_in(shell, cmd, i);
 	dup_pipes_out(shell, cmd, i);
 }
 
