@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/21 20:00:39 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/24 23:13:44 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	init_pipes(t_shell *shell)
 	int		i;
 	int		n;
 
+	if (shell->n_cmds == 0)
+	{
+		shell->pipes = NULL;
+		return ;
+	}
 	n = shell->n_cmds - 1;
 	pipes = malloc(sizeof (int *) * n);
 	i = 0;

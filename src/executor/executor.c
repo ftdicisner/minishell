@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/23 23:41:57 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:19:52 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	ft_read(int fd)
 int		select_exec_cmd(t_cmd *cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0)
-		return (builtin_echo(cmd, shell));
+		return (builtin_echo(cmd));
 	if (ft_strcmp(cmd->name, "cd") == 0)
 		return (builtin_cd(cmd, shell));
 	if (ft_strcmp(cmd->name, "pwd") == 0)
-		return (builtin_pwd(cmd, shell));
+		return (builtin_pwd(shell));
 	if (ft_strcmp(cmd->name, "env") == 0)
 		return (builtin_env(cmd, shell));
 	if (ft_strcmp(cmd->name, "export") == 0)

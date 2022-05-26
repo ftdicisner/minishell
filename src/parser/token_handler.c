@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_parser_2.c                                  :+:      :+:    :+:   */
+/*   token_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:35:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 21:52:03 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:50:54 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,10 @@ char	*get_substr_env(char *str, t_list *env_vars)
 t_list *split_by_env(char *str, t_list *env_vars)
 {
 	t_list	*list;
-	int		start;
-	int		end;
 	int 	i;
 	char	*token;
 
 	list = NULL;
-	start = 0;
-	end = 0;
 	i = 0;
 	while (str[i] != 0)
 	{
@@ -70,24 +66,32 @@ t_list *split_by_env(char *str, t_list *env_vars)
 	return (list);
 }
 
-// Check if there are env vars in the token and
+// Check if there are env vars in the token
 // and return a new string with the env vars
 // values replaced
 char *expand_token(char *token, t_list *env_vars)
 {
-	char *str;
-	char *tmp;
-	t_list *tmp_list;
+	char 	*str;
+	char	*tmp;
+	t_list	*tmp_list;
+	t_list	*list;
 
-	str = malloc(sizeof(char) * 1);
-	*str = '\0';
-	tmp_list = split_by_env(token, env_vars);
-	while (tmp_list)
+	list = split_by_env(token, env_vars);
+	tmp_list = list;
+	if (ft_lstsize(tmp_list) == 1)
+	{
+		tmp = ft_strdup((char *)tmp_list->content);
+		ft_lstclear(&list, free);
+		return (tmp);
+	}
+	str = ft_strdup((char *)tmp_list->content);
+	while (tmp_list->next)
 	{
 		tmp = str;
-		str = ft_strjoin(str, (char *)tmp_list->content);
+		str = ft_strjoin((char *)tmp_list->content, (char *)tmp_list->next->content);
 		free(tmp);
 		tmp_list = tmp_list->next;
 	}
+	ft_lstclear(&list, free);
 	return (str);
 }

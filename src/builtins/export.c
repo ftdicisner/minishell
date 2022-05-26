@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/20 20:34:23 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 19:39:06 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // Returns the node with the given key
 t_list *find_node_var(t_list *head, char *key)
 {
-	t_list	*tmp;
-	t_var	*var;
-	int		key_len;
+	t_list *tmp;
+	t_var *var;
+	size_t key_len;
 
 	tmp = head;
 	key_len = ft_strlen(key);
@@ -32,15 +32,17 @@ t_list *find_node_var(t_list *head, char *key)
 	return (NULL);
 }
 
-t_list	*export_var(t_list *head, char *key, char *value)
+t_list *export_var(t_list *head, char *key, char *value)
 {
-	t_list	*new;
-	t_var	*var;
+	t_list *new;
+	t_var *var;
 
 	new = find_node_var(head, key);
 	if (new != NULL)
 	{
 		var = (t_var *)new->content;
+		free(key);
+		free(var->value);
 		var->value = value;
 	}
 	else
@@ -55,10 +57,9 @@ t_list	*export_var(t_list *head, char *key, char *value)
 }
 
 // Returns the node content (t_var) with the given key
-t_var	*find_var(t_list *head, char *key)
+t_var *find_var(t_list *head, char *key)
 {
-	t_list	*new;
-	t_var	*var;
+	t_list *new;
 
 	if (ft_strlen(key) == 1 && key[0] == '?')
 		export_var(head, "?", ft_itoa(cmd_status));
@@ -75,24 +76,23 @@ t_var	*find_var(t_list *head, char *key)
 // add without '=': export x g
 // add with multiples '=': export ringo=1=1234=sherlock
 // updated var: export a=9 // export a=15
-int		builtin_export(t_cmd *cmd, t_shell *shell)
+int builtin_export(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
 	char	*key;
-	char	*value;
-	char	**splitted;
+	char 	*value;
+	char 	**splitted;
 
 	i = 1;
 	while (i < cmd->n_args)
 	{
 		if (ft_strchr(cmd->args[i], '=') != 0)
 		{
-			// to-do check if ft_split memory is clear
 			splitted = ft_split(cmd->args[i], '=');
 			key = ft_strdup(splitted[0]);
 			value = ft_strdup(cmd->args[i] + ft_strlen(key) + 1);
 			export_var(shell->env_vars, key, value);
-			free(splitted);
+			free_array(splitted);
 		}
 		i++;
 	}

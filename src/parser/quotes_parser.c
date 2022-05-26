@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 12:29:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 23:04:47 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:42:59 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		count_tokens_b4_pipes(t_list *tokens)
 	return (count);
 }
 
-char	**split_tokens_aux(char ***by_pipes, int i, t_list **lst)
+void	split_tokens_aux(char ***by_pipes, int i, t_list **lst)
 {
 	int j;
 	int n_tokens;
@@ -68,9 +68,11 @@ char	***split_tokens_by_pipes(t_list *tokens)
 	char	***tokens_by_pipes;
 	t_list	*lst;
 	int		i;
+	int		n_cmds;
 
 	i = 0;
-	tokens_by_pipes = malloc(sizeof(char **) * (count_pipes(tokens) + 1));
+	n_cmds = count_pipes(tokens) + 1;
+	tokens_by_pipes = malloc(sizeof(char **) * (n_cmds + 1));
 	lst = tokens;
 	while (lst)
 	{
@@ -92,8 +94,8 @@ char	***generate_tokens(char *input, t_shell *shell)
 	char	***tokens_by_pipes;
 
 	tokens = input_to_tokens_lst(input, shell);
-	// TODO Free the list of tokens lst
 	tokens_by_pipes = split_tokens_by_pipes(tokens);
+	ft_lstclear(&tokens, free);
 	return (tokens_by_pipes);
 }
 

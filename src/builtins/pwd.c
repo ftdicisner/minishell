@@ -6,13 +6,13 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:22:59 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/20 20:34:44 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:19:35 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		builtin_pwd(t_cmd *cmd, t_shell *shell)
+int		builtin_pwd(t_shell *shell)
 {
 	t_var	*pwd;
 

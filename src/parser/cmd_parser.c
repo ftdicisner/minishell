@@ -6,18 +6,16 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:50:17 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 20:28:48 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/24 22:17:34 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	omit_redir(char **args, t_list *head, char in_out, int i)
+int	omit_redir(char **args, char in_out, int i)
 {
-	int		arg_len;
 	int		j;
 
-	arg_len = ft_strlen(args[i]);
 	j = 0;
 	while (args[i][j] == in_out) 
 		j++;
@@ -47,7 +45,7 @@ t_list	*parse_cmd(char **args)
 		first = args[i][0];
 		skips = 0;
 		if (first == '<' || first == '>')
-			skips = omit_redir(args, head, first, i);
+			skips = omit_redir(args, first, i);
 		if (skips == 0)
 		{
 			ft_lstadd_back(&head, ft_lstnew(ft_strdup(args[i])));

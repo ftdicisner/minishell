@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   clean_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 15:41:46 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 16:04:05 by dicisner         ###   ########.fr       */
+/*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
+/*   Updated: 2022/05/24 20:27:54 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sig(int sig)
+// free each string and each array
+// of an array of an array of strings
+int		free_tokens_arr(char ***tokens)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar_fd('\n', 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		cmd_status = 130;
-	}
-}
+	int i;
+	int j;
 
-void	config_signal(t_sigaction *action, void (*handler)(int), int signum)
-{
-	action->sa_handler = handler;
-	action->sa_flags = 0;
-	sigemptyset(&action->sa_mask);
-	sigaction(signum, action, NULL);
+	i = 0;
+	while(tokens[i])
+	{
+		j = 0;
+		while(tokens[i][j])
+		{
+			free(tokens[i][j]);
+			j++;
+		}
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+	return (EXIT_SUCCESS);
 }

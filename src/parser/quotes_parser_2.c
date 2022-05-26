@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:55:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 23:06:21 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:21:51 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*token_end_pos(char *str, int start_pos)
 
 	start_char = str[start_pos];
 	i = start_pos + 1;
-	// if str == quotes, return when find another quote
 	if (start_char == '\'' || start_char == '"')
 	{
 		while (str[i] != '\0' && str[i] != start_char)
@@ -41,7 +40,6 @@ char	*token_end_pos(char *str, int start_pos)
 		return (str + start_pos + 1);
 	else
 	{
-		// ec'ho' not handled
 		while (str[i] != '\0' && str[i] != ' ')
 			i++;
 		return (str + i);
@@ -95,6 +93,8 @@ t_list	*input_to_tokens_lst(char *input, t_shell *shell)
 	while (*end != '\0')
 	{
 		start = token_start_pos(end);
+		if (*start == '\0')
+			return (lst);
 		end = token_end_pos(start, 0);
 		if (end == NULL)
 			return (NULL);
