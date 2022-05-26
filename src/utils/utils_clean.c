@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   utils_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 15:41:46 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 16:04:05 by dicisner         ###   ########.fr       */
+/*   Created: 2022/05/25 18:26:24 by dicisner          #+#    #+#             */
+/*   Updated: 2022/05/25 21:24:07 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sig(int sig)
+void	free_array(char **array)
 {
-	if (sig == SIGINT)
+	int i;
+
+	i = 0;
+	while (array[i])
 	{
-		ft_putchar_fd('\n', 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		cmd_status = 130;
+		free(array[i]);
+		i++;
 	}
+	free(array);
 }
 
-void	config_signal(t_sigaction *action, void (*handler)(int), int signum)
+int	free_pipes(t_shell *shell)
 {
-	action->sa_handler = handler;
-	action->sa_flags = 0;
-	sigemptyset(&action->sa_mask);
-	sigaction(signum, action, NULL);
+	int		i;
+
+	i = 0;
+	while (i < shell->n_cmds - 1)
+	{
+		free(shell->pipes[i]);
+		i++;
+	}
+	free(shell->pipes);
+	return (EXIT_SUCCESS);
 }

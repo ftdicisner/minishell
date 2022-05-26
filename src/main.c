@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 23:09:11 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:26:22 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,18 @@ int	main(int argc, char **argv, char** env)
 
 	if (!argc && !argv)
 		return (0);
-	
-	ft_putstr_fd(env[0], 1);
-	ft_putchar_fd('\n', 1);
-	
-	// REPL -> Read Evaluate Print Loop
 	shell = init_shell(env);
 	config_signal(shell->action, SIG_IGN, SIGQUIT);
 	config_signal(shell->action, &handle_sig, SIGINT);
 	while ((s = readline("minishell~ ")))
 	{
-		// printf("%s\n", s);
 		add_history(s);
 		rl_redisplay();
 		parse_line(s, shell);
 		// debug_quotes(s, shell);
 		init_pipes(shell);
 		executor(shell);
-		free_shell(shell);
+		free_shell_tmp(shell);
 	}
 	return (EXIT_SUCCESS);
 }

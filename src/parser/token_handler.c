@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:35:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 22:17:46 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:50:54 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,16 @@ char *expand_token(char *token, t_list *env_vars)
 	char 	*str;
 	char	*tmp;
 	t_list	*tmp_list;
+	t_list	*list;
 
-	tmp_list = split_by_env(token, env_vars);
+	list = split_by_env(token, env_vars);
+	tmp_list = list;
 	if (ft_lstsize(tmp_list) == 1)
-		return (ft_strdup((char *)tmp_list->content));
+	{
+		tmp = ft_strdup((char *)tmp_list->content);
+		ft_lstclear(&list, free);
+		return (tmp);
+	}
 	str = ft_strdup((char *)tmp_list->content);
 	while (tmp_list->next)
 	{
@@ -86,5 +92,6 @@ char *expand_token(char *token, t_list *env_vars)
 		free(tmp);
 		tmp_list = tmp_list->next;
 	}
+	ft_lstclear(&list, free);
 	return (str);
 }

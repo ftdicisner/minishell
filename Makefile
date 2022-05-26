@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/25 00:42:34 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/25 21:26:54 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,9 @@ UTILS = error.c \
 		utils2.c \
 		utils_parser.c \
 		clean_cmd.c \
-		clean_parser.c
+		clean_parser.c \
+		utils_clean.c \
+		clean_shell.c
 
 SRC = $(BASE) \
 	$(PARSE) \

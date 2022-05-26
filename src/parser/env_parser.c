@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 10:11:05 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/22 20:28:53 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 18:28:04 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 t_var *path_str_to_var(char *input)
 {
-	t_var *key_val;
-	char **splitted;
+	t_var	*key_val;
+	char	**splitted;
 
 	if (input == NULL || input[0] == 0)
-		return 0;
+		return (NULL);
 	key_val = malloc(sizeof(t_var));
 	splitted = ft_split(input, '=');
 	key_val->key = ft_strdup(splitted[0]);
 	key_val->value = ft_strdup(input + ft_strlen(splitted[0]) + 1);
-	free(splitted);
+	free_array(splitted);
 	return (key_val);
 }
 

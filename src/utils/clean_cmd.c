@@ -6,25 +6,11 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:30:10 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 22:21:29 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:24:39 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	free_pipes(t_shell *shell)
-{
-	int		i;
-
-	i = 0;
-	while (i < shell->n_cmds - 1)
-	{
-		free(shell->pipes[i]);
-		i++;
-	}
-	free(shell->pipes);
-	return (EXIT_SUCCESS);
-}
 
 void	free_redir_aux(void *redir)
 {
@@ -79,13 +65,3 @@ int		free_cmds(t_shell *shell)
 	free(shell->cmds);
 	return (EXIT_SUCCESS);
 }
-
-int		free_shell(t_shell *shell)
-{
-	free_cmds(shell);
-	free_pipes(shell);
-	return (EXIT_SUCCESS);
-}
-
-
-

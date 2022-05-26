@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 22:19:44 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 21:25:38 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	print_error(char *cmd, char *error_msg);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 int		ft_open_wronly_file(t_redir *redir);
 int		ft_open_ronly_file(t_redir *redir);
+void	free_array(char **array);
 
 // Debug
 void	debug_env_vars(t_list *head);
@@ -123,7 +124,9 @@ void	handle_sig(int sig);
 void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
 
 // Cleaner
-int		free_shell(t_shell *shell);
+int		free_shell_tmp(t_shell *shell);
 int		free_tokens_arr(char ***tokens);
+int		free_pipes(t_shell *shell);
+int		free_cmds(t_shell *shell);
 
 #endif

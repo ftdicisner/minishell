@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   clean_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 15:41:46 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 16:04:05 by dicisner         ###   ########.fr       */
+/*   Created: 2022/05/25 21:22:31 by dicisner          #+#    #+#             */
+/*   Updated: 2022/05/25 21:25:47 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sig(int sig)
+int		free_shell_tmp(t_shell *shell)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar_fd('\n', 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		cmd_status = 130;
-	}
-}
-
-void	config_signal(t_sigaction *action, void (*handler)(int), int signum)
-{
-	action->sa_handler = handler;
-	action->sa_flags = 0;
-	sigemptyset(&action->sa_mask);
-	sigaction(signum, action, NULL);
+	free_cmds(shell);
+	free_pipes(shell);
+	return (EXIT_SUCCESS);
 }

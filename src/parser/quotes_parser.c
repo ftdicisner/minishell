@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 12:29:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/25 00:42:22 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:42:59 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ char	***generate_tokens(char *input, t_shell *shell)
 	char	***tokens_by_pipes;
 
 	tokens = input_to_tokens_lst(input, shell);
-	// TODO Free the list of tokens lst
 	tokens_by_pipes = split_tokens_by_pipes(tokens);
+	ft_lstclear(&tokens, free);
 	return (tokens_by_pipes);
 }
 
