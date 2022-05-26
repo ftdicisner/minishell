@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/24 22:19:52 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:24:34 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	executor(t_shell *shell)
 
 	i = 0;
 	if (shell->n_cmds == 1 && check_builtin(shell->cmds[i]) == 1)
-		select_exec_cmd(shell->cmds[i], shell);
+		cmd_status = select_exec_cmd(shell->cmds[i], shell);
 	else
 	{
 		while (i < shell->n_cmds)
