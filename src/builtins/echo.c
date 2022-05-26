@@ -6,20 +6,20 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 12:57:02 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:57:29 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo_output(int i, t_cmd *cmd)
+void	echo_output(int i, t_cmd *cmd, int n_flag)
 {
 	int		arg_len;
 	int		j;
 
 	arg_len = ft_strlen(cmd->args[i]);
 	j = 0;
-	if (i > 1)
+	if (i > 1 + n_flag)
 		printf(" ");
 	while (j < arg_len)
 	{
@@ -49,12 +49,9 @@ int	builtin_echo(t_cmd *cmd)
 	while (i < cmd->n_args)
 	{
 		if (ft_strncmp(cmd->args[i], flag, 2) == 0)
-		{
 			n_flag = 1;
-			i++;
-		}
 		else
-			echo_output(i, cmd);
+			echo_output(i, cmd, n_flag);
 		i++;
 	}
 	if (n_flag == 0)
