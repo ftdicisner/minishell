@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 15:44:58 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:31:08 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	int	child_exit_status;
 	int	status;
 
+	config_signal(shell->action, &handle_sig_ignore, SIGINT);
 	pid = fork();
 	if (pid == 0)
 	{
+		config_signal(shell->action, &handle_sig_child, SIGINT);
 		dup_pipes_cmd(shell, cmd, i);
 		child_exit_status = select_exec_cmd(cmd, shell);
 		exit(child_exit_status);
@@ -47,7 +49,7 @@ void	execute_child(t_cmd *cmd, t_shell *shell, int i)
 	if (waitpid(pid, &status, 0) == -1)
 		g_cmd_status = EXIT_FAILURE;
 	if (WIFEXITED(status))
-	g_cmd_status = WEXITSTATUS(status);
+		g_cmd_status = WEXITSTATUS(status);
 	close_pipes_cmd(shell, i);
 }
 

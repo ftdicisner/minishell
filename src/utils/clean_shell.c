@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:31 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 16:07:59 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:53:38 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_tvar(void *tvar)
 int		free_shell(t_shell *shell)
 {
 	ft_lstclear(&shell->env_vars, free_tvar);
-	free_array(shell->paths);
 	free(shell->action);
 	return (EXIT_SUCCESS);
 }

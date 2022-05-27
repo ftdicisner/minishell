@@ -6,12 +6,12 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/26 16:08:35 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/27 16:22:37 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC = gcc -g -Wall -Wextra -Werror -fsanitize=address
+CC = gcc -g -Wall -Wextra -Werror #-fsanitize=address
 
 SRC_DIR = src
 PARSER_DIR = parser
@@ -106,10 +106,10 @@ re: fclean all
 install:
 	sudo apt-get install libreadline-dev
 
-valgrindtest:
-	valgrind --suppressions=readline.supp --track-fds=yes ./minishell
+valgrindfd:
+	valgrind --suppressions=readline.supp --track-fds=yes --trace-children=yes ./minishell
 
 valgrindleaks:
-	valgrind --suppressions=readline.supp --leak-check=full ./minishell
+	valgrind --suppressions=readline.supp --leak-check=full  --show-leak-kinds=all ./minishell
 
 .PHONY: all clean fclean re install

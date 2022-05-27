@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 12:55:03 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:05:39 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,31 @@ t_shell	*init_shell(char **env)
 	shell = malloc(sizeof(t_shell));
 	shell->action = malloc(sizeof(t_sigaction));
 	shell->env_vars = init_env(env);
-	shell->paths = get_path_var(env);
 	g_cmd_status = 0;
 	return (shell);
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*s;
+	char	*cmd_line;
 	t_shell	*shell;
 
 	if (!argc && !argv)
 		return (0);
 	shell = init_shell(env);
-	config_signal(shell->action, SIG_IGN, SIGQUIT);
-	config_signal(shell->action, &handle_sig, SIGINT);
 	while (1)
 	{
-		s = readline("minishell~ ");
-		add_history(s);
-		rl_redisplay();
-		parse_line(s, shell);
+		config_signal(shell->action, &handle_sig, SIGINT);
+		config_signal(shell->action, SIG_IGN, SIGQUIT);
+		cmd_line = readline("\033[32mminishell~$\033[0m ");
+		if (cmd_line == NULL)
+		{
+			printf("Exiting minihell...\n");
+			free_shell(shell);
+			exit(EXIT_SUCCESS);
+		}
+		add_history(cmd_line);
+		parse_line(cmd_line, shell);
 		init_pipes(shell);
 		executor(shell);
 		free_shell_tmp(shell);

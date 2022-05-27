@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:41:46 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 12:52:06 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:24:37 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,25 @@ void	handle_sig(int sig)
 	}
 }
 
+void	handle_sig_ignore(int sig)
+{
+	if (sig == SIGINT)
+		g_cmd_status = 130;
+}
+
+void	handle_sig_child(int sig)
+{
+	if (sig == SIGINT)
+	{
+		g_cmd_status = 130;
+		exit(130);
+	}
+}
+
 void	config_signal(t_sigaction *action, void (*handler)(int), int signum)
 {
 	action->sa_handler = handler;
-	action->sa_flags = 0;
+	action->sa_flags = SA_RESTART;
 	sigemptyset(&action->sa_mask);
 	sigaction(signum, action, NULL);
 }
