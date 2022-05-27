@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 12:11:24 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 15:57:29 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:02:43 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	echo_output(int i, t_cmd *cmd, int n_flag)
 		printf(" ");
 	while (j < arg_len)
 	{
-		if (cmd->args[i][j] != '\"' && cmd->args[i][j] != '\'')
-			printf("%c", cmd->args[i][j]);
+		printf("%c", cmd->args[i][j]);
 		j++;
 	}
 }
