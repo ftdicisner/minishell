@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 16:06:07 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 15:53:12 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_cmd {
 typedef struct s_shell {
 	t_cmd		**cmds;
 	int			n_cmds;
-	char		**paths;
 	t_list		*env_vars;
 	int			**pipes;
 	t_sigaction	*action;
@@ -70,7 +69,7 @@ typedef struct s_var
 
 // parser
 void	parse_line(char *input, t_shell *shell);
-char	**get_path_var(char **envp);
+char	**get_path_var(t_shell *shell);
 t_list	*init_env(char **env);
 t_list	*export_var(t_list *head, char *key, char *value);
 t_list	*unset_var(t_list *head, char *key);
@@ -122,6 +121,8 @@ void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i);
 
 // Signals
 void	handle_sig(int sig);
+void	handle_sig_child(int sig);
+void	handle_sig_ignore(int sig);
 void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
 
 // Cleaner

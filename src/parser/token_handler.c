@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:35:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:35:57 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 16:57:02 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*end_position_env(char *str)
 
 	i = 0;
 	if (str[0] == '$')
-		while (str[i] != '\0' && str[i] != ' ')
+		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\'')
 			i++;
 	else
 		while (str[i] != '\0' && str[i] != '$')
@@ -88,8 +88,7 @@ char	*expand_token(char *token, t_list *env_vars)
 	while (tmp_list->next)
 	{
 		tmp = str;
-		str = ft_strjoin((char *)tmp_list->content,
-				(char *)tmp_list->next->content);
+		str = ft_strjoin(str, (char *)tmp_list->next->content);
 		free(tmp);
 		tmp_list = tmp_list->next;
 	}
