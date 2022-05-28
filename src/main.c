@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 16:42:23 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 20:37:00 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:58:27 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **env)
 		}
 		add_history(cmd_line);
 		parse_line(cmd_line, shell);
-		init_pipes(shell);
+		// init_pipes(shell);
 		executor(shell);
 		free_shell_tmp(shell);
 		free(cmd_line);

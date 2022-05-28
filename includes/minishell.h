@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 20:45:14 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:58:08 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,6 @@ int		free_tokens_arr(char ***tokens);
 int		free_pipes(t_shell *shell);
 int		free_cmds(t_shell *shell);
 int		free_shell(t_shell *shell);
+void	close_all_fds();
 
 #endif
