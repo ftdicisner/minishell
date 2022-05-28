@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 16:55:24 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:43:26 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,16 @@ int	free_tokens_arr(char ***tokens)
 	}
 	free(tokens);
 	return (EXIT_SUCCESS);
+}
+
+//Close opened file descriptor
+void	close_all_fds()
+{
+	int	fd;
+
+	fd = open(TMP_FILE, O_RDONLY | O_CREAT);
+	close(fd + 1);
+	while (fd > 2)
+		close(fd--);
+	unlink(TMP_FILE);
 }

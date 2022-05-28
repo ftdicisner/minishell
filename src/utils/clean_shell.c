@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:31 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 17:10:48 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:45:58 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	free_shell_tmp(t_shell *shell)
 {
 	free_cmds(shell);
 	free_pipes(shell);
+	close_all_fds();
 	return (EXIT_SUCCESS);
 }
 
