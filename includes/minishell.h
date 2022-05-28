@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 20:07:09 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:01:10 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ int		free_tokens_arr(char ***tokens);
 int		free_pipes(t_shell *shell);
 int		free_cmds(t_shell *shell);
 int		free_shell(t_shell *shell);
-void	close_all_fds();
+void	close_all_fds(void);
 
 #endif
