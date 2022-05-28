@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:23:55 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 17:05:25 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:00:47 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	select_exec_cmd(t_cmd *cmd, t_shell *shell)
 	if (ft_strcmp(cmd->name, "cd") == 0)
 		return (builtin_cd(cmd, shell));
 	if (ft_strcmp(cmd->name, "pwd") == 0)
-		return (builtin_pwd(shell));
+		return (builtin_pwd());
 	if (ft_strcmp(cmd->name, "env") == 0)
 		return (builtin_env(cmd, shell));
 	if (ft_strcmp(cmd->name, "export") == 0)
