@@ -6,7 +6,7 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/27 16:22:37 by dicisner         ###   ########.fr        #
+#    Updated: 2022/05/27 21:02:15 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,6 +105,11 @@ re: fclean all
 
 install:
 	sudo apt-get install libreadline-dev
+
+normi:
+	norminette src/*
+	norminette includes/*
+	norminette libs/libft/src/*
 
 valgrindfd:
 	valgrind --suppressions=readline.supp --track-fds=yes --trace-children=yes ./minishell

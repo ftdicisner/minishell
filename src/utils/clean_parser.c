@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 19:43:26 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:00:34 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	free_tokens_arr(char ***tokens)
 }
 
 //Close opened file descriptor
-void	close_all_fds()
+void	close_all_fds(void)
 {
 	int	fd;
 
