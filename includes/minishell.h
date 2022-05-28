@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 15:53:12 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:45:14 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*expand_token(char *token, t_list *env_vars);
 int		builtin_echo(t_cmd *cmd);
 int		builtin_env(t_cmd *cmd, t_shell *shell);
 int		builtin_cd(t_cmd *cmd, t_shell *shell);
-int		builtin_pwd(t_shell *shell);
+void	builtin_pwd(void);
 int		builtin_export(t_cmd *cmd, t_shell *shell);
 int		builtin_unset(t_cmd *cmd, t_shell *shell);
 int		builtin_exit(t_cmd *cmd, t_shell *shell);
