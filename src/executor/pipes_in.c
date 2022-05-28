@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/27 20:09:31 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:39:35 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static void	init_heredoc(char *tmp_eof)
 		}
 		else
 		{
-			printf("bash: warning: here-document at 
-				line 41 delimited by end-of-file (wanted `%s')\n", tmp_eof);
+			printf("bash: warning: here-document at line 41 delimited by end-of-file (wanted `%s')\n", tmp_eof);
 			exit(EXIT_FAILURE);
 		}
 	}
