@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/27 21:11:15 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:23:17 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i)
 			fd = ft_open_ronly_file(last);
 			dup2(fd, STDIN_FILENO);
 		}
-		close(shell->pipes[i - 1][1]);
+		if (i != 0)
+			close(shell->pipes[i - 1][1]);
 	}
 	else if (i != 0)
 	{
