@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 09:59:22 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 20:30:20 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:57:51 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ void	dup_pipes_out(t_shell *shell, t_cmd *cmd, int i)
 		last = create_files(cmd->out_r);
 		fd = ft_open_wronly_file(last);
 		dup2(fd, STDOUT_FILENO);
-		close(shell->pipes[i][0]);
 	}
 	else if (shell->n_cmds != 1 && i != shell->n_cmds - 1)
 	{
 		dup2(shell->pipes[i][1], STDOUT_FILENO);
-		close_all_fds();
 		close(shell->pipes[i][0]);
 	}
 }
