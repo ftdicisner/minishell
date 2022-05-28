@@ -3,21 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 13:22:59 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 13:00:47 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:44:34 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_pwd(t_shell *shell)
+static char	*get_current_directory(void)
 {
-	t_var	*pwd;
+	return (getcwd(NULL, 0));
+}
 
-	pwd = find_var(shell->env_vars, "PWD");
-	if (pwd)
-		printf("%s\n", pwd->value);
-	return (EXIT_SUCCESS);
+void	builtin_pwd(void)
+{
+	char	*cwd;
+
+	cwd = get_current_directory();
+	if (cwd)
+	{
+		write(STDOUT_FILENO, cwd, ft_strlen(cwd));
+		write(STDOUT_FILENO, "\n", 1);
+		free(cwd);
+	}
 }

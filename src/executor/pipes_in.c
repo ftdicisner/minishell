@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes_in.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 13:20:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:31:03 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	init_heredoc(char *tmp_eof)
 	int		tmp_in_fd;
 	int		tmp_out_fd;
 
-	input = readline("in_heredoc > ");
+	input = readline("> ");
 	tmp_in_fd = open(TMP_FILE, O_TRUNC | O_RDWR | O_CREAT, 0664);
 	while (ft_strcmp(input, tmp_eof) != 0)
 	{
@@ -47,7 +47,7 @@ static void	init_heredoc(char *tmp_eof)
 		}
 		else
 		{
-			print_error(tmp_eof, "error in heredoc");
+			printf("bash: warning: here-document at line 41 delimited by end-of-file (wanted `%s')\n", tmp_eof);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -73,6 +73,7 @@ void	dup_pipes_in(t_shell *shell, t_cmd *cmd, int i)
 			fd = ft_open_ronly_file(last);
 			dup2(fd, STDIN_FILENO);
 		}
+		close(shell->pipes[i - 1][1]);
 	}
 	else if (i != 0)
 	{
