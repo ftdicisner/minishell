@@ -3,20 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
+/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 20:39:46 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/26 16:05:53 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/28 21:09:42 by jfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	is_digits_only(const char *s)
+{
+	while (*s)
+	{
+		if (ft_isdigit(*s++) == 0)
+			return (1);
+	}
+	return (0);
+}
+
 int	builtin_exit(t_cmd *cmd, t_shell *shell)
 {
-	if (cmd->n_args > 1)
+	int	exit_code;
+
+	if (cmd->n_args > 2)
 		print_error("exit", TOO_MANY_ARGS);
+	if (cmd->n_args == 2)
+	{
+		if (is_digits_only(cmd->args[1]) == 1)
+		{
+			ft_putstr_fd("exit: ", 2);
+			ft_putstr_fd(cmd->args[1], 2);
+			ft_putstr_fd(": numeric argument required\n", 2);
+			exit_code = 2;
+		}
+		else
+			exit_code = ft_atoi(cmd->args[1]);
+	}
+	else
+		exit_code = 0;
 	free_shell(shell);
-	exit(EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	exit(exit_code);
+	return (exit_code);
 }
