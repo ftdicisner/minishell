@@ -6,59 +6,66 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 08:13:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:34:31 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:57:23 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redir	*find_redir(char **args, char in_out, int *i)
+int	get_redir_mode(t_token_type type, char in_out)
+{
+	if (in_out == '<' && type == IN_SINGLE_REDIR)
+		return (SINGLE);
+	if (in_out == '<' && type == IN_DOUBLE_REDIR)
+		return (DOUBLE);
+	if (in_out == '>' && type == OUT_SINGLE_REDIR)
+		return (SINGLE);
+	if (in_out == '>' && type == OUT_DOUBLE_REDIR)
+		return (DOUBLE);
+	return (-1);
+}
+
+t_redir	*get_redir(t_list *tokens, char in_out)
 {
 	t_redir	*redir;
-	int		j;
+	t_token	*curr_token;
+	t_token	*next_token;
 
-	redir = malloc(sizeof(t_redir));
-	j = 0;
-	while (args[*i][j] == in_out)
-		j++;
-	if (j < 3)
+	curr_token = (t_token *)tokens->content;
+	redir = NULL;
+	if (get_redir_mode(curr_token->type, in_out) != -1)
 	{
-		if (j == 2)
-			redir->mode = DOUBLE;
+		redir = (t_redir *)malloc(sizeof(t_redir));
+		redir->mode = get_redir_mode(curr_token->type, in_out);
+		if (tokens->next == NULL)
+			redir->file = NULL;
 		else
-			redir->mode = SINGLE;
-		if (args[*i][j] == 0 && *i + 1 < count_splitted_2d(args))
 		{
-			redir->file = ft_strdup(args[*i + 1]);
-			*i = *i + 1;
+			next_token = ((t_token *)tokens->next->content);
+			redir->file = ft_strdup(next_token->str);
 		}
-		else
-			redir->file = ft_strdup(args[*i] + j);
-		return (redir);
 	}
-	return (NULL);
+	return (redir);
 }
 
 // Returns a list of t_redir (filenames + mode [single, double])
-t_list	*parse_redir(char **args, char in_out)
+t_list	*parse_redir(t_list *tokens, char in_out)
 {
-	int		i;
-	int		n_args;
 	t_list	*head;
 	t_redir	*new;
 
-	n_args = count_splitted_2d(args);
 	head = NULL;
-	i = 0;
-	while (i < n_args)
+	while (tokens)
 	{
-		if (args[i][0] == in_out)
+		new = get_redir(tokens, in_out);
+		if (new != NULL)
 		{
-			new = find_redir(args, in_out, &i);
-			if (new != NULL)
-				ft_lstadd_back(&head, ft_lstnew(new));
+			ft_lstadd_back(&head, ft_lstnew(new));
+			tokens = tokens->next;
+			if (tokens == NULL)
+				break ;
 		}
-		i++;
+		tokens = tokens->next;
 	}
 	return (head);
 }

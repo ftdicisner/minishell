@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:26:24 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 20:42:41 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:06:53 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int	free_pipes(t_shell *shell)
 	free(shell->pipes);
 	return (EXIT_SUCCESS);
 }
-

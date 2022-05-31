@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_parser.c                                    :+:      :+:    :+:   */
+/*   pipes_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 12:29:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 18:25:17 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:04:28 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_pipe_token(t_token * token)
+int	is_pipe_token(t_token *token)
 {
-	if (ft_strcmp(token->str, "|") == 0 && token->type == SPACES)
+	if (token->type == PIPE)
 		return (1);
 	else
 		return (0);
@@ -58,50 +58,51 @@ int	count_tokens_b4_pipes(t_list *tokens)
 	return (count);
 }
 
-void	split_tokens_aux(char ***by_pipes, int i, t_list **lst)
+void	split_tokens_aux(t_list **by_pipes, int i, t_list **lst)
 {
 	int		j;
 	int		n_tokens;
 	t_token	*token;
+	t_token	*new_token;
 
 	n_tokens = count_tokens_b4_pipes(*lst);
-	by_pipes[i] = malloc(sizeof(char *) * (n_tokens + 1));
+	by_pipes[i] = NULL;
 	j = 0;
 	while (j < n_tokens)
 	{
 		token = (t_token *)(*lst)->content;
-		by_pipes[i][j] = ft_strdup(token->str);
+		new_token = malloc(sizeof(t_token));
+		new_token->str = ft_strdup(token->str);
+		new_token->type = token->type;
+		ft_lstadd_back(by_pipes + i, ft_lstnew(new_token));
 		*lst = (*lst)->next;
 		j++;
 	}
-	by_pipes[i][j] = NULL;
 }
 
-char	***split_tokens_by_pipes(t_list *tokens)
+t_list	**split_tokens_by_pipes(t_list *tokens)
 {
-	char	***tokens_by_pipes;
-	t_list	*lst;
+	t_list	**tokens_by_pipes;
 	int		i;
 	int		n_cmds;
 
 	i = 0;
 	n_cmds = count_pipes(tokens) + 1;
-	tokens_by_pipes = malloc(sizeof(char **) * (n_cmds + 1));
-	lst = tokens;
-	if (is_pipe_token((t_token *)lst->content))
+	tokens_by_pipes = malloc(sizeof(t_list *) * (n_cmds + 1));
+	if (is_pipe_token((t_token *)tokens->content))
 	{
-		split_tokens_aux(tokens_by_pipes, i, &lst);
+		split_tokens_aux(tokens_by_pipes, i, &tokens);
 		i++;
 	}
-	while (lst)
+	while (tokens)
 	{
-		if (!is_pipe_token((t_token *)lst->content))
+		if (!is_pipe_token((t_token *)tokens->content))
 		{
-			split_tokens_aux(tokens_by_pipes, i, &lst);
+			split_tokens_aux(tokens_by_pipes, i, &tokens);
 			i++;
 		}
 		else
-			lst = lst->next;
+			tokens = tokens->next;
 	}
 	tokens_by_pipes[i] = NULL;
 	return (tokens_by_pipes);

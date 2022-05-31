@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 20:42:25 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:55:31 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,13 @@ typedef struct sigaction	t_sigaction;
 typedef enum e_token_type {
 	SINGLE_QUOTES,
 	DOUBLE_QUOTES,
-	SPACES
+	SPACES,
+	PIPE,
+	IN_SINGLE_REDIR,
+	IN_DOUBLE_REDIR,
+	OUT_SINGLE_REDIR,
+	OUT_DOUBLE_REDIR,
+	NONE
 }			t_token_type;
 
 typedef struct s_token {
@@ -89,12 +95,13 @@ t_var	*find_var(t_list *head, char *key);
 int		ft_strcmp(char *s1, char *s2);
 char	*concat_strs(char **input);
 char	**lst_env_to_strs(t_list *env);
-t_list	*parse_redir(char **args, char in_out);
-t_list	*parse_cmd(char **args);
+t_list	*parse_redir(t_list *tokens, char in_out);
+t_list	*parse_cmd(t_list *tokens);
 char	***generate_tokens(char *input, t_shell *shell);
 t_list	*input_to_tokens_lst(char *input, t_shell *shell);
 char	*expand_token(char *token, t_list *env_vars);
-char	***split_tokens_by_pipes(t_list *tokens);
+t_list	**split_tokens_by_pipes(t_list *tokens);
+void	get_subtokens(t_list **tokens, char *token, t_shell *shell);
 
 // builtins
 int		builtin_echo(t_cmd *cmd);
@@ -119,6 +126,8 @@ void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 int		ft_open_wronly_file(t_redir *redir);
 int		ft_open_ronly_file(t_redir *redir);
 void	free_array(char **array);
+int		count_lst_lst(t_list **lst);
+char	**lststr_to_token_arr(t_list *lst);
 
 // Debug
 void	debug_env_vars(t_list *head);
@@ -140,7 +149,7 @@ void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
 
 // Cleaner
 int		free_shell_tmp(t_shell *shell);
-int		free_tokens(char ***tokens, t_list *tokens_lst);
+int		free_tokens(t_list **tokens, t_list *tokens_lst);
 int		free_pipes(t_shell *shell);
 int		free_cmds(t_shell *shell);
 int		free_shell(t_shell *shell);

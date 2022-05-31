@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 20:42:49 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:17:50 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Move array of arguments to a t_list and them
 // generate the t_cmd information
-void	lst_to_cmd(char **args, t_cmd *cmd)
+void	lst_to_cmd(t_list *args, t_cmd *cmd)
 {
 	t_list	*lst;
 	int		size;
@@ -36,29 +36,29 @@ void	lst_to_cmd(char **args, t_cmd *cmd)
 	ft_lstclear(&lst, free);
 }
 
-t_cmd	*create_cmd(char **cmd_str)
+t_cmd	*create_cmd(t_list *cmd_tokens)
 {
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(t_cmd));
-	if (cmd_str != 0)
+	if (cmd_tokens != 0)
 	{
-		lst_to_cmd(cmd_str, cmd);
-		cmd->in_r = parse_redir(cmd_str, '<');
-		cmd->out_r = parse_redir(cmd_str, '>');
+		lst_to_cmd(cmd_tokens, cmd);
+		cmd->in_r = parse_redir(cmd_tokens, '<');
+		cmd->out_r = parse_redir(cmd_tokens, '>');
 	}
 	return (cmd);
 }
 
 // Receives ['cd diego paco', 'echo diego'] and sets the cmds
 // in the form cmd struct
-void	split_cmd_args(char ***s_by_pipes, t_shell *shell)
+void	split_cmd_args(t_list **s_by_pipes, t_shell *shell)
 {
 	t_cmd	**cmds;
 	int		n_commands;
 	int		i;
 
-	n_commands = count_splitted_3d(s_by_pipes);
+	n_commands = count_lst_lst(s_by_pipes);
 	cmds = malloc(sizeof(t_cmd *) * (n_commands));
 	i = 0;
 	while (i < n_commands)
@@ -80,7 +80,7 @@ void	split_cmd_args(char ***s_by_pipes, t_shell *shell)
 void	parse_line(char *input, t_shell *shell)
 {
 	t_list	*tokens;
-	char	***tokens_by_pipes;
+	t_list	**tokens_by_pipes;
 
 	tokens = input_to_tokens_lst(input, shell);
 	tokens_by_pipes = split_tokens_by_pipes(tokens);

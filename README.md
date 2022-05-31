@@ -22,11 +22,13 @@ make
 
 We can divide the process into 4 parts. 
 
-### Tokenize
+### Tokenizer
 
 Generate a list of tokens that meet the requirements:
 - A substring surrounded by quotes, either single or double
 - A substring surrounded by spaces
+- A substring surrounded by spaces and/or any special symbol `<` `<<` `|`
+- A special symbol `|` `<` `>` 
 
 This process will go from left to right in the string and each requirement excludes the next one. Son once we meet the first requirement (quotes), whatever is inside doesn't matter. Example: `echo 'red blue'` will return two tokens of type `echo` and `red blue`.
 

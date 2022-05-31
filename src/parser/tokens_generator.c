@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_parser_2.c                                  :+:      :+:    :+:   */
+/*   tokens_generator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:55:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 17:59:18 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 18:00:56 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*next_pointer_no_blank(char *str)
-{
-	while (*str == ' ' || *str == '\t')
-		str++;
-	return (str);
-}
 
 // Return a pointer to the end of the string token
 char	*token_end_pos(char *str, int start_pos)
@@ -49,37 +42,44 @@ char	*token_end_pos(char *str, int start_pos)
 // Return a pointer to the start of a string token
 char	*token_start_pos(char *str)
 {
-	char	*next;
+	while (*str == ' ' || *str == '\t')
+		str++;
+	return (str);
+}
 
-	next = next_pointer_no_blank(str);
-	return (next);
+t_token	*new_token(char *str, int type)
+{
+	t_token	*token;
+
+	token = (t_token *)malloc(sizeof(t_token));
+	token->type = type;
+	token->str = str;
+	return (token);
 }
 
 // Return a string token by checking if there is a variable
 // that needs to be evaluated
-t_token	*get_token(char *start, char *end, t_shell *shell)
+void	*get_set_token(t_list **tokens, char *start, char *end, t_shell *shell)
 {
 	t_token	*token;
 	char	*tmp;
 
-	token = malloc(sizeof(t_token));
 	if (*start == '\'')
 	{
-		token->str = ft_substr(start + 1, 0, end - start - 2);
-		token->type = SINGLE_QUOTES;
+		token = new_token(ft_substr(start, 1, end - start - 2), SINGLE_QUOTES);
+		ft_lstadd_back(tokens, ft_lstnew(token));
 	}
 	else if (*start == '"')
 	{
 		tmp = ft_substr(start + 1, 0, end - start - 2);
-		token->str = expand_token(tmp, shell->env_vars);
-		token->type = DOUBLE_QUOTES;
+		token = new_token(expand_token(tmp, shell->env_vars), DOUBLE_QUOTES);
+		ft_lstadd_back(tokens, ft_lstnew(token));
 		free(tmp);
 	}
 	else
 	{
 		tmp = ft_substr(start, 0, end - start);
-		token->str = expand_token(tmp, shell->env_vars);
-		token->type = SPACES;
+		get_subtokens(tokens, tmp, shell);
 		free(tmp);
 	}
 	return (token);
@@ -91,7 +91,6 @@ t_token	*get_token(char *start, char *end, t_shell *shell)
 t_list	*input_to_tokens_lst(char *input, t_shell *shell)
 {
 	t_list	*lst;
-	t_token	*token;
 	char	*start;
 	char	*end;
 
@@ -106,10 +105,7 @@ t_list	*input_to_tokens_lst(char *input, t_shell *shell)
 		end = token_end_pos(start, 0);
 		if (end == NULL)
 			return (NULL);
-		token = get_token(start, end, shell);
-		if (token == NULL)
-			return (NULL);
-		ft_lstadd_back(&lst, ft_lstnew(token));
+		get_set_token(&lst, start, end, shell);
 	}
 	return (lst);
 }
