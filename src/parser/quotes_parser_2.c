@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:55:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:34:13 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/30 17:59:18 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,31 @@ char	*token_start_pos(char *str)
 	return (next);
 }
 
-char	*get_token(char *start, char *end, t_shell *shell)
+// Return a string token by checking if there is a variable
+// that needs to be evaluated
+t_token	*get_token(char *start, char *end, t_shell *shell)
 {
-	char	*token;
+	t_token	*token;
 	char	*tmp;
 
+	token = malloc(sizeof(t_token));
 	if (*start == '\'')
-		token = ft_substr(start + 1, 0, end - start - 2);
+	{
+		token->str = ft_substr(start + 1, 0, end - start - 2);
+		token->type = SINGLE_QUOTES;
+	}
 	else if (*start == '"')
 	{
 		tmp = ft_substr(start + 1, 0, end - start - 2);
-		token = expand_token(tmp, shell->env_vars);
+		token->str = expand_token(tmp, shell->env_vars);
+		token->type = DOUBLE_QUOTES;
 		free(tmp);
 	}
 	else
 	{
 		tmp = ft_substr(start, 0, end - start);
-		token = expand_token(tmp, shell->env_vars);
+		token->str = expand_token(tmp, shell->env_vars);
+		token->type = SPACES;
 		free(tmp);
 	}
 	return (token);
@@ -79,11 +87,11 @@ char	*get_token(char *start, char *end, t_shell *shell)
 
 // Return a list of tokens from a input string
 // A token can be a string surronded by blank spaces, a pipe, 
-// a string surrounded by quotes
+// a string surrounded by quotes, expand env variables if needed
 t_list	*input_to_tokens_lst(char *input, t_shell *shell)
 {
 	t_list	*lst;
-	char	*token;
+	t_token	*token;
 	char	*start;
 	char	*end;
 

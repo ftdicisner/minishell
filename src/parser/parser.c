@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:16:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:32:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:42:49 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ void	split_cmd_args(char ***s_by_pipes, t_shell *shell)
 // commands w many redirect in different positions: < tes < foo echo homer >> go
 void	parse_line(char *input, t_shell *shell)
 {
-	char	***splitted_by_pipe;
+	t_list	*tokens;
+	char	***tokens_by_pipes;
 
-	splitted_by_pipe = generate_tokens(input, shell);
-	split_cmd_args(splitted_by_pipe, shell);
-	free_tokens_arr(splitted_by_pipe);
+	tokens = input_to_tokens_lst(input, shell);
+	tokens_by_pipes = split_tokens_by_pipes(tokens);
+	split_cmd_args(tokens_by_pipes, shell);
+	free_tokens(tokens_by_pipes, tokens);
 }

@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 21:01:10 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:42:25 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@
 extern int					g_cmd_status;
 
 typedef struct sigaction	t_sigaction;
+
+// How is the token surrounded
+typedef enum e_token_type {
+	SINGLE_QUOTES,
+	DOUBLE_QUOTES,
+	SPACES
+}			t_token_type;
+
+typedef struct s_token {
+	char			*str;
+	t_token_type	type;	
+}			t_token;
 
 /* < or << */
 typedef enum e_redir_mode {
@@ -82,6 +94,7 @@ t_list	*parse_cmd(char **args);
 char	***generate_tokens(char *input, t_shell *shell);
 t_list	*input_to_tokens_lst(char *input, t_shell *shell);
 char	*expand_token(char *token, t_list *env_vars);
+char	***split_tokens_by_pipes(t_list *tokens);
 
 // builtins
 int		builtin_echo(t_cmd *cmd);
@@ -127,7 +140,7 @@ void	config_signal(t_sigaction *action, void (*handler)(int), int signum);
 
 // Cleaner
 int		free_shell_tmp(t_shell *shell);
-int		free_tokens_arr(char ***tokens);
+int		free_tokens(char ***tokens, t_list *tokens_lst);
 int		free_pipes(t_shell *shell);
 int		free_cmds(t_shell *shell);
 int		free_shell(t_shell *shell);

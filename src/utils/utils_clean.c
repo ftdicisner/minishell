@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 18:26:24 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 16:55:49 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/30 20:42:41 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ int	free_pipes(t_shell *shell)
 	free(shell->pipes);
 	return (EXIT_SUCCESS);
 }
+
