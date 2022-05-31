@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 16:21:26 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:32:00 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*get_cmd(t_shell *shell, char *cmd)
 	char	*command;
 	char	**paths;
 
+	if (cmd == NULL)
+		return (NULL);
 	if (access(cmd, 0) == 0)
 		return (ft_strdup(cmd));
 	paths = get_path_var(shell);

@@ -6,32 +6,37 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 21:00:34 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:07:16 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// free each string and each array
-// of an array of an array of strings
-int	free_tokens_arr(char ***tokens)
+void	free_token(void *token)
 {
-	int	i;
-	int	j;
+	t_token	*t;
+
+	t = (t_token *)token;
+	free(t->str);
+	free(t);
+}
+
+// free each token in the list of list of tokens
+// aka 2d list
+int	free_tokens(t_list **tokens, t_list *tokens_lst)
+{
+	int		i;
+	t_list	*tmp;
 
 	i = 0;
 	while (tokens[i])
 	{
-		j = 0;
-		while (tokens[i][j])
-		{
-			free(tokens[i][j]);
-			j++;
-		}
-		free(tokens[i]);
+		tmp = tokens[i];
+		ft_lstclear(&tmp, free_token);
 		i++;
 	}
 	free(tokens);
+	ft_lstclear(&tokens_lst, free_token);
 	return (EXIT_SUCCESS);
 }
 

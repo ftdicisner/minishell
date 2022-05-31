@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 20:32:45 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 16:56:18 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:09:22 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ int	count_splitted_3d(char ***s_arr)
 
 	n = 0;
 	while (s_arr[n] != 0)
+	{
+		n++;
+	}
+	return (n);
+}
+
+int	count_lst_lst(t_list **lst)
+{
+	int	n;
+
+	n = 0;
+	while (lst[n] != 0)
 	{
 		n++;
 	}
