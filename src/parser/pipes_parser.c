@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 12:29:18 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/31 18:04:28 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:31:26 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ t_list	**split_tokens_by_pipes(t_list *tokens)
 {
 	t_list	**tokens_by_pipes;
 	int		i;
-	int		n_cmds;
 
 	i = 0;
-	n_cmds = count_pipes(tokens) + 1;
-	tokens_by_pipes = malloc(sizeof(t_list *) * (n_cmds + 1));
+	if (!tokens)
+		return (NULL);
+	tokens_by_pipes = malloc(sizeof(t_list *) * (count_pipes(tokens) + 2));
 	if (is_pipe_token((t_token *)tokens->content))
 	{
 		split_tokens_aux(tokens_by_pipes, i, &tokens);

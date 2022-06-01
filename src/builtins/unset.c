@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:29 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 13:01:12 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:33:21 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ void	del_var(void *content)
 
 t_list	*unset_var_aux(t_list *head, t_list *prev, t_list *curr)
 {
+	t_list	*tmp;
+
 	if (prev == NULL)
 	{
+		tmp = curr->next;
 		ft_lstdelone(curr, del_var);
-		return (curr);
+		return (tmp);
 	}
 	else
 	{
@@ -70,7 +73,7 @@ int	builtin_unset(t_cmd *cmd, t_shell *shell)
 	i = 1;
 	while (i < cmd->n_args)
 	{
-		unset_var(shell->env_vars, cmd->args[i]);
+		shell->env_vars = unset_var(shell->env_vars, cmd->args[i]);
 		i++;
 	}
 	return (EXIT_SUCCESS);

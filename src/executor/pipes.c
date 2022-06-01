@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 17:26:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/27 20:49:25 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:49:49 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	assign_pipe(int *fd)
 {
 	if (pipe(fd) == -1)
-		print_error("exit", "Error while creating the pipe");
+		print_error("exit", "Error while creating the pipe", EXIT_FAILURE);
 	return (0);
 }
 

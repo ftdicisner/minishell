@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfrancis <jfrancis@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 20:39:46 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/28 21:09:42 by jfrancis         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:49:23 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	builtin_exit(t_cmd *cmd, t_shell *shell)
 	int	exit_code;
 
 	if (cmd->n_args > 2)
-		print_error("exit", TOO_MANY_ARGS);
+		print_error("exit", TOO_MANY_ARGS, EXIT_FAILURE);
 	if (cmd->n_args == 2)
 	{
 		if (is_digits_only(cmd->args[1]) == 1)

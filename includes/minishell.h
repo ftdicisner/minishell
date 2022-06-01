@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:43:50 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/31 16:55:31 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:55:14 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int		count_splitted_2d(char **s_arr);
 int		count_splitted_3d(char ***s_arr);
 int		ft_strcmp(char *s1, char *s2);
 char	**lststr_to_arr(t_list *lst);
-void	print_error(char *cmd, char *error_msg);
+int		print_error(char *cmd, char *error_msg, int err_status);
+int		print_error_export(char *arg, int err_status);
 void	print_env_var_val(int i, t_cmd *cmd, t_shell *shell);
 int		ft_open_wronly_file(t_redir *redir);
 int		ft_open_ronly_file(t_redir *redir);
