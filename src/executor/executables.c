@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/30 18:32:00 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:36:44 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ int	default_exec(t_cmd *cmd, t_shell *shell)
 	cmd_str = get_cmd(shell, cmd->name);
 	if (cmd_str == NULL)
 	{
-		print_error(cmd->name, COMMAND_NOT_FOUND);
+		print_error(cmd->name, COMMAND_NOT_FOUND, EXIT_FAILURE);
 		status = 127;
 	}
 	else
 	{
+		printf("%s\n", cmd_str);
 		status = execve(cmd_str, cmd->args, lst_env_to_strs(shell->env_vars));
 	}
 	free(cmd_str);

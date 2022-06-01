@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:55:32 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/26 15:44:45 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:57:25 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ t_var	*find_var(t_list *head, char *key)
 	return (NULL);
 }
 
+char	*find_first_no_blank(char *input)
+{
+	while (*input == ' ' || *input == '\t')
+		input++;
+	return (input);
+}
+
 // Tests to pass:
 // add once: export a=5
 // add multiple: export a=5 b=9 x=10
@@ -76,6 +83,9 @@ t_var	*find_var(t_list *head, char *key)
 // add without '=': export x g
 // add with multiples '=': export ringo=1=1234=sherlock
 // updated var: export a=9 // export a=15
+// export 'blue =azul' should be error (done)
+// export 'blue= azul' should export 'azul'
+// export blue =azul should be error (done)
 int	builtin_export(t_cmd *cmd, t_shell *shell)
 {
 	int		i;
@@ -84,12 +94,18 @@ int	builtin_export(t_cmd *cmd, t_shell *shell)
 	char	**splitted;
 
 	i = 1;
+	if (cmd->n_args == 1)
+		return (print_error("export", "no variable defined", EXIT_SUCCESS));
 	while (i < cmd->n_args)
 	{
 		if (ft_strchr(cmd->args[i], '=') != 0)
 		{
+			if (find_first_no_blank(cmd->args[i])[0] == '=')
+				return (print_error_export(cmd->args[i], EXIT_FAILURE));
 			splitted = ft_split(cmd->args[i], '=');
 			key = ft_strdup(splitted[0]);
+			if (ft_strchr(key, ' ') != 0)
+				return (print_error_export(cmd->args[i], EXIT_FAILURE));
 			value = ft_strdup(cmd->args[i] + ft_strlen(key) + 1);
 			export_var(shell->env_vars, key, value);
 			free_array(splitted);

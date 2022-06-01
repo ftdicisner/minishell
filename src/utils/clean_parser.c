@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:25:39 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/31 12:07:16 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:32:36 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	free_tokens(t_list **tokens, t_list *tokens_lst)
 	t_list	*tmp;
 
 	i = 0;
+	if (!tokens)
+		return (EXIT_SUCCESS);
 	while (tokens[i])
 	{
 		tmp = tokens[i];

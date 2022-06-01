@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 21:50:35 by jfrancis          #+#    #+#             */
-/*   Updated: 2022/05/27 21:23:17 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/05/31 21:27:59 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	t_redir_is_file(void *node_content)
 	content = (t_redir *)(node_content);
 	if (access(content->file, F_OK) != 0)
 	{
-		print_error(content->file, NO_SUCH_FILE);
+		print_error(content->file, NO_SUCH_FILE, EXIT_FAILURE);
 		exit(EXIT_FAILURE);
 	}
 }
