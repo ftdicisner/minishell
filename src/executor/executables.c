@@ -6,25 +6,17 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/31 21:36:44 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/06/01 17:33:55 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Returns the full command path if exist
-// Returns NULL if doesn't exist
-char	*get_cmd(t_shell *shell, char *cmd)
+char	*get_cmd_path(char *cmd, char **paths)
 {
 	char	*tmp;
 	char	*command;
-	char	**paths;
 
-	if (cmd == NULL)
-		return (NULL);
-	if (access(cmd, 0) == 0)
-		return (ft_strdup(cmd));
-	paths = get_path_var(shell);
 	if (paths == NULL)
 		return (NULL);
 	while (*paths)
@@ -40,22 +32,58 @@ char	*get_cmd(t_shell *shell, char *cmd)
 	return (NULL);
 }
 
+// Returns the full command path if exist
+// Returns NULL if doesn't exist
+char	*get_cmd(t_shell *shell, char *cmd)
+{
+	char	*command;
+	char	**paths;
+
+	if (cmd == NULL)
+		return (NULL);
+	if (access(cmd, 0) == 0)
+		return (ft_strdup(cmd));
+	paths = get_path_var(shell);
+	if (paths == NULL)
+		return (NULL);
+	command = get_cmd_path(cmd, paths);
+	free_array(paths);
+	return (command);
+}
+
+int	ft_exec(char *cmd_name, char **cmd_args, t_shell *shell)
+{
+	int		status;
+	char	**env_vars;
+
+	env_vars = lst_env_to_strs(shell->env_vars);
+	status = execve(cmd_name, cmd_args, env_vars);
+	if (status != 0)
+		perror("execve");
+	free_array(env_vars);
+	return (status);
+}
+
 int	default_exec(t_cmd *cmd, t_shell *shell)
 {
 	char	*cmd_str;
 	int		status;
 
-	cmd_str = get_cmd(shell, cmd->name);
-	if (cmd_str == NULL)
+	if (ft_strncmp("./", cmd->name, 2) == 0)
 	{
-		print_error(cmd->name, COMMAND_NOT_FOUND, EXIT_FAILURE);
-		status = 127;
+		if (access(cmd->name + 2, 0) == 0)
+			status = ft_exec(cmd->name + 2, cmd->args, shell);
+		else
+			status = print_error(cmd->name, COMMAND_NOT_FOUND, 127);
 	}
 	else
 	{
-		printf("%s\n", cmd_str);
-		status = execve(cmd_str, cmd->args, lst_env_to_strs(shell->env_vars));
+		cmd_str = get_cmd(shell, cmd->name);
+		if (cmd_str == NULL)
+			status = print_error(cmd->name, COMMAND_NOT_FOUND, 127);
+		else
+			status = ft_exec(cmd_str, cmd->args, shell);
+		free(cmd_str);
 	}
-	free(cmd_str);
 	return (status);
 }
