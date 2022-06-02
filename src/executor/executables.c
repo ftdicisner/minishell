@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 09:29:34 by dicisner          #+#    #+#             */
-/*   Updated: 2022/06/01 17:33:55 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:41:15 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	default_exec(t_cmd *cmd, t_shell *shell)
 	char	*cmd_str;
 	int		status;
 
+	if (cmd->name == 0)
+		return (EXIT_SUCCESS);
 	if (ft_strncmp("./", cmd->name, 2) == 0)
 	{
 		if (access(cmd->name + 2, 0) == 0)
