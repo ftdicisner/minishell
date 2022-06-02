@@ -6,12 +6,12 @@
 #    By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 13:10:18 by jfrancis          #+#    #+#              #
-#    Updated: 2022/05/31 15:58:53 by dicisner         ###   ########.fr        #
+#    Updated: 2022/06/01 19:22:10 by dicisner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC = gcc -g -Wall -Wextra -Werror -fsanitize=address
+CC = gcc -g -Wall -Wextra -Werror #-fsanitize=address
 
 SRC_DIR = src
 PARSER_DIR = parser
