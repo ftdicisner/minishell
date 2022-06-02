@@ -6,7 +6,7 @@
 /*   By: dicisner <diegocl02@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 22:55:49 by dicisner          #+#    #+#             */
-/*   Updated: 2022/05/31 18:00:56 by dicisner         ###   ########.fr       */
+/*   Updated: 2022/06/01 19:20:38 by dicisner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_list	*input_to_tokens_lst(char *input, t_shell *shell)
 			return (lst);
 		end = token_end_pos(start, 0);
 		if (end == NULL)
-			return (NULL);
+			return (lst);
 		get_set_token(&lst, start, end, shell);
 	}
 	return (lst);
